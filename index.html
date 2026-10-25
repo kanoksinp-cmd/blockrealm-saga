@@ -1,0 +1,203 @@
+<!doctype html>
+<html lang="th">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Blockrealm Saga</title>
+<meta name="description" content="Blockrealm Saga — RPG แฟนตาซีโลกบล็อก 3 มิติ เล่นฟรีบนเบราว์เซอร์ ล่ามอนสเตอร์ รับเควสกิลด์ ไต่แรงก์ F สู่ S">
+<meta property="og:title" content="Blockrealm Saga">
+<meta property="og:description" content="RPG แฟนตาซีโลกบล็อก 3 มิติ เล่นฟรีบนเบราว์เซอร์">
+<meta property="og:image" content="assets/cover.png">
+<meta property="og:type" content="website">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="icon" href="assets/favicon.png">
+<link rel="preload" href="assets/embed.webp" as="image">
+<style>
+@font-face{font-family:"Pix";src:url(assets/fonts/BlockrealmPixel.ttf) format("truetype");font-display:swap}
+@font-face{font-family:"Prompt";src:url(assets/fonts/Prompt-Medium.ttf) format("truetype");font-weight:500;font-display:swap}
+@font-face{font-family:"Prompt";src:url(assets/fonts/Prompt-Bold.ttf) format("truetype");font-weight:700;font-display:swap}
+:root{
+  --bg:#14100c; --panel:rgba(36,27,19,.94); --panel-2:#2e2218; --line:#4a3826;
+  --text:#efe4cc; --muted:#b9a88a; --gold:#e8b24a; --gold-hi:#ffd66b; --gold-lo:#a8681c;
+  --ink:#2a1306; --green:#5fbf3b; --radius:10px;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;background:var(--bg) url(assets/bg.webp) center top/cover fixed no-repeat;color:var(--text);
+  font:500 16px/1.65 "Prompt",system-ui,sans-serif;-webkit-font-smoothing:antialiased}
+a{color:var(--gold)}
+img.px{image-rendering:pixelated}
+.wrap{max-width:980px;margin:0 auto;padding:0 16px}
+header.hero{text-align:center;padding:18px 0 6px}
+header.hero h1{margin:0}
+header.hero h1 img{width:100%;max-width:960px;height:auto;display:block;margin:0 auto}
+.sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0)}
+.lead{margin:2px auto 18px;color:var(--muted);font-size:17px;max-width:640px}
+main{background:var(--panel);border:1px solid var(--line);border-radius:var(--radius);
+  box-shadow:0 20px 60px rgba(0,0,0,.55);padding:22px;margin-bottom:28px}
+/* game frame */
+.stage{position:relative;aspect-ratio:16/9;width:100%;border-radius:8px;overflow:hidden;background:#000 url(assets/embed.webp) center/cover;
+  border:2px solid #5a4128;box-shadow:inset 0 0 0 2px #1a120b,0 10px 30px rgba(0,0,0,.5)}
+.stage iframe{position:absolute;inset:0;width:100%;height:100%;border:0;display:block;background:#000}
+.cover{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:12px;
+  background:radial-gradient(ellipse at center,rgba(0,0,0,.05) 30%,rgba(10,6,3,.45) 100%)}
+.btn{font:700 18px/1 "Prompt",sans-serif;display:inline-flex;align-items:center;gap:10px;cursor:pointer;text-decoration:none;
+  color:var(--ink);background:linear-gradient(#ffe189,#e8b24a 55%,#c4842a);border:2px solid var(--ink);border-radius:8px;
+  padding:14px 26px;box-shadow:0 4px 0 #6b3412,0 8px 18px rgba(0,0,0,.5);transition:transform .08s,box-shadow .08s}
+.btn:hover{filter:brightness(1.08)}
+.btn:active{transform:translateY(3px);box-shadow:0 1px 0 #6b3412,0 4px 10px rgba(0,0,0,.5)}
+.btn:focus-visible{outline:3px solid #fff3c4;outline-offset:3px}
+.btn.big{font-size:24px;padding:18px 38px}
+.btn.ghost{background:var(--panel-2);color:var(--text);border-color:var(--line);box-shadow:0 3px 0 #0c0805;font-size:15px;padding:10px 16px}
+.hint{font-size:14px;color:#fff3dc;background:rgba(20,12,6,.72);padding:4px 12px;border-radius:999px}
+.bar{display:flex;flex-wrap:wrap;gap:10px;align-items:center;justify-content:space-between;margin-top:12px}
+.bar .left{display:flex;gap:8px;flex-wrap:wrap}
+.note{font-size:13px;color:var(--muted)}
+.warn{display:none;margin-top:10px;font-size:14px;background:#3a2a14;border:1px solid #6b4a1e;border-radius:8px;padding:8px 12px}
+/* sections */
+h2{font:400 34px/1 "Pix",sans-serif;color:var(--gold-hi);letter-spacing:.03em;margin:34px 0 14px;
+  text-shadow:0 3px 0 #6b3412,0 0 2px #2a1306}
+section:first-of-type h2{margin-top:26px}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));gap:12px}
+.card{background:rgba(20,14,9,.6);border:1px solid var(--line);border-radius:8px;padding:14px 16px}
+.card h3{margin:0 0 4px;font-size:17px;color:var(--gold)}
+.card p{margin:0;color:var(--muted);font-size:15px}
+.classes{display:grid;grid-template-columns:repeat(auto-fit,minmax(130px,1fr));gap:12px}
+.cls{text-align:center;background:rgba(20,14,9,.6);border:1px solid var(--line);border-radius:8px;padding:12px 8px 10px}
+.cls img{width:60px;height:102px;display:block;margin:0 auto 6px;filter:drop-shadow(0 4px 4px rgba(0,0,0,.5))}
+.cls b{display:block;color:var(--text)}
+.cls span{font-size:13px;color:var(--muted)}
+table.keys{width:100%;border-collapse:collapse;font-size:15px}
+table.keys td{padding:8px 10px;border-bottom:1px solid var(--line);vertical-align:top}
+table.keys td:first-child{width:38%;white-space:nowrap}
+kbd{font:700 13px/1 "Prompt",sans-serif;display:inline-block;padding:5px 8px;margin:0 2px 2px 0;color:var(--ink);
+  background:linear-gradient(#f6e6c0,#d9bf88);border:1px solid #6b4a1e;border-bottom-width:3px;border-radius:5px}
+.dl{display:flex;flex-wrap:wrap;gap:16px;align-items:center;background:rgba(20,14,9,.6);border:1px solid var(--line);border-radius:8px;padding:16px}
+.dl p{margin:0;flex:1 1 260px;color:var(--muted);font-size:15px}
+footer{text-align:center;color:var(--muted);font-size:13px;padding:0 0 30px}
+footer a{color:var(--muted)}
+@media (max-width:640px){
+  main{padding:14px}
+  .btn.big{font-size:19px;padding:14px 26px}
+  h2{font-size:28px}
+  table.keys td:first-child{white-space:normal;width:45%}
+  .hint{font-size:12px;text-align:center;margin:0 12px}
+}
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}.btn{transition:none}}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header class="hero">
+    <h1><img src="assets/banner.png" width="960" height="195" alt="Blockrealm Saga"><span class="sr">Blockrealm Saga</span></h1>
+    <p class="lead">RPG แฟนตาซีโลกบล็อก 3 มิติ ออกผจญภัยกับเพื่อนร่วมทีม ล่ามอนสเตอร์ รับเควสกิลด์ และไต่แรงก์จาก F สู่ S เล่นฟรีบนเบราว์เซอร์ได้ทันที</p>
+  </header>
+
+  <main>
+    <div class="stage" id="stage">
+      <div class="cover" id="cover">
+        <button class="btn big" id="play" type="button" aria-label="เริ่มเล่น Blockrealm Saga">
+          <svg width="22" height="22" viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M6 4l14 8-14 8z"/></svg>
+          เล่นเลย
+        </button>
+        <span class="hint">ไฟล์เกมประมาณ 57 MB · ครั้งแรกอาจโหลดนานสักครู่</span>
+      </div>
+    </div>
+    <div class="bar">
+      <div class="left">
+        <button class="btn ghost" id="fs" type="button">⛶ เต็มจอ</button>
+        <button class="btn ghost" id="reload" type="button" hidden>↻ โหลดเกมใหม่</button>
+      </div>
+      <span class="note">แนะนำ Chrome หรือ Edge บนคอมพิวเตอร์ · เสียงเริ่มเล่นหลังคลิกในเกม</span>
+    </div>
+    <div class="warn" id="mobile">ดูเหมือนคุณใช้มือถือหรือแท็บเล็ต เกมนี้ออกแบบมาสำหรับเมาส์และคีย์บอร์ด เล่นบนคอมพิวเตอร์จะลื่นที่สุด</div>
+
+    <section>
+      <h2>Features</h2>
+      <div class="grid">
+        <div class="card"><h3>โลกบล็อกให้ออกสำรวจ</h3><p>เริ่มที่เมืองอัลเดนเวล แล้วออกไปยังทุ่งหญ้า ป่า ทะเลทราย ภูเขาหิมะ และดันเจี้ยน</p></div>
+        <div class="card"><h3>กิลด์นักผจญภัย</h3><p>รับค่าหัวจากบอร์ดเควสพิเศษ สะสม GP แล้วเลื่อนแรงก์จาก F ไปจนถึง S</p></div>
+        <div class="card"><h3>ปาร์ตี้และระบบ AUTO</h3><p>ออกล่ากับเพื่อนร่วมทีม กดเควสแล้วตัวละครจะเดินไปล่าเป้าหมายและกลับมาส่งเควสเอง</p></div>
+        <div class="card"><h3>ตีบวกอาวุธ</h3><p>นำหินตีบวกไปให้ช่างตีเหล็กโดแรน เพิ่มพลังอาวุธและชุดเกราะ</p></div>
+      </div>
+    </section>
+
+    <section>
+      <h2>Choose your class</h2>
+      <div class="classes">
+        <div class="cls"><img class="px" src="assets/classes/swordsman_3.png" alt="" width="60" height="102"><b>นักดาบ</b><span>แนวหน้า ทนทาน</span></div>
+        <div class="cls"><img class="px" src="assets/classes/mage_3.png" alt="" width="60" height="102"><b>นักเวท</b><span>เวทธาตุ ดาเมจแรง</span></div>
+        <div class="cls"><img class="px" src="assets/classes/archer_3.png" alt="" width="60" height="102"><b>นักธนู</b><span>โจมตีระยะไกล</span></div>
+        <div class="cls"><img class="px" src="assets/classes/acolyte_3.png" alt="" width="60" height="102"><b>นักบวช</b><span>ฮีลและบัฟทีม</span></div>
+        <div class="cls"><img class="px" src="assets/classes/thief_3.png" alt="" width="60" height="102"><b>โจร</b><span>เร็ว หลบไว ติดพิษ</span></div>
+        <div class="cls"><img class="px" src="assets/classes/merchant_3.png" alt="" width="60" height="102"><b>พ่อค้า</b><span>ค้าขาย หาเงินเก่ง</span></div>
+      </div>
+    </section>
+
+    <section>
+      <h2>Controls</h2>
+      <table class="keys">
+        <tr><td>คลิกซ้าย</td><td>เดิน · โจมตีมอนสเตอร์ · คุยกับ NPC</td></tr>
+        <tr><td>คลิกขวาค้างแล้วลาก / <kbd>Q</kbd><kbd>E</kbd></td><td>หมุนกล้อง</td></tr>
+        <tr><td>ล้อเมาส์</td><td>ซูมเข้า–ออก</td></tr>
+        <tr><td><kbd>F1</kbd>–<kbd>F8</kbd> · <kbd>1</kbd>–<kbd>8</kbd></td><td>ใช้สกิลและไอเทมในช่องลัด</td></tr>
+        <tr><td><kbd>Space</kbd></td><td>โจมตีตรงหน้า</td></tr>
+        <tr><td><kbd>Z</kbd></td><td>เปิด/ปิด AUTO</td></tr>
+        <tr><td><kbd>I</kbd> <kbd>S</kbd> <kbd>K</kbd> <kbd>J</kbd></td><td>กระเป๋า · สถานะ · สกิล · สมุดเควส</td></tr>
+        <tr><td><kbd>M</kbd> <kbd>P</kbd> <kbd>O</kbd></td><td>แผนที่โลก · ปาร์ตี้ · ตั้งค่า</td></tr>
+        <tr><td><kbd>Esc</kbd></td><td>ปิดหน้าต่าง</td></tr>
+      </table>
+    </section>
+
+    <section id="download">
+      <h2>Download</h2>
+      <div class="dl">
+        <p>เล่นบนเครื่องแบบไม่ต้องใช้เบราว์เซอร์ ลื่นกว่าและเซฟไม่หายเมื่อล้างข้อมูลเบราว์เซอร์ (Windows 64-bit)</p>
+        <a class="btn" id="dlbtn" href="#download">⬇ ดาวน์โหลดสำหรับ Windows</a>
+      </div>
+      <p class="note">ถ้า Windows ขึ้นหน้าจอสีฟ้า “Windows protected your PC” ให้กด More info → Run anyway</p>
+    </section>
+  </main>
+
+  <footer>
+    © Blockrealm Saga · สร้างด้วย <a href="https://godotengine.org" rel="noopener">Godot Engine</a> ·
+    ฟอนต์ Prompt และ Jersey 10 ใช้สัญญาอนุญาต <a href="assets/fonts/OFL-Prompt.txt">SIL OFL 1.1</a>
+  </footer>
+</div>
+
+<script>
+(function(){
+  var stage=document.getElementById('stage'),cover=document.getElementById('cover'),
+      playBtn=document.getElementById('play'),fsBtn=document.getElementById('fs'),reBtn=document.getElementById('reload'),frame=null;
+  function start(){
+    if(frame) return frame;
+    frame=document.createElement('iframe');
+    frame.src='play/index.html';
+    frame.title='Blockrealm Saga';
+    frame.setAttribute('allow','fullscreen; autoplay; gamepad');
+    frame.setAttribute('allowfullscreen','');
+    stage.appendChild(frame);
+    cover.remove();
+    reBtn.hidden=false;
+    frame.addEventListener('load',function(){try{frame.contentWindow.focus();}catch(e){}});
+    frame.focus();
+    return frame;
+  }
+  playBtn.addEventListener('click',start);
+  fsBtn.addEventListener('click',function(){
+    var el=start();var req=el.requestFullscreen||el.webkitRequestFullscreen;
+    if(req) req.call(el);
+  });
+  reBtn.addEventListener('click',function(){if(frame){frame.src=frame.src;frame.focus();}});
+  // Point the download button at this repository's latest GitHub release.
+  var dl=document.getElementById('dlbtn'),h=location.hostname;
+  if(/\.github\.io$/.test(h)){
+    var user=h.split('.')[0],seg=location.pathname.split('/').filter(Boolean)[0];
+    var repo=(seg&&seg!=='index.html')?seg:h;
+    dl.href='https://github.com/'+user+'/'+repo+'/releases/latest';
+  }
+  if(matchMedia('(pointer:coarse)').matches) document.getElementById('mobile').style.display='block';
+})();
+</script>
+</body>
+</html>
