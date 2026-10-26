@@ -84,6 +84,12 @@ footer a{color:var(--muted)}
   .hint{font-size:12px;text-align:center;margin:0 12px}
 }
 @media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}.btn{transition:none}}
+body.game-expanded{overflow:hidden}
+body.game-expanded main{position:fixed;inset:0;z-index:1000;box-sizing:border-box;width:100%;max-width:none;height:100dvh;margin:0;padding:0;display:flex;flex-direction:column;background:#111;border:0;border-radius:0}
+body.game-expanded main>.stage{flex:1;min-height:0;aspect-ratio:auto;border:0;border-radius:0}
+body.game-expanded main>.bar{flex:none;margin:0;padding:8px;box-sizing:border-box}
+body.game-expanded main>:not(.stage):not(.bar){display:none}
+body.game-expanded .bar .note{display:none}
 </style>
 </head>
 <body>
@@ -105,7 +111,7 @@ footer a{color:var(--muted)}
     </div>
     <div class="bar">
       <div class="left">
-        <button class="btn ghost" id="fs" type="button">⛶ เต็มจอ</button>
+        <button class="btn ghost" id="fs" type="button" aria-pressed="false">⛶ เต็มหน้าต่าง</button>
         <button class="btn ghost" id="reload" type="button" hidden>↻ โหลดเกมใหม่</button>
       </div>
       <span class="note">แนะนำ Chrome หรือ Edge บนคอมพิวเตอร์ · เสียงเริ่มเล่นหลังคลิกในเกม</span>
@@ -172,7 +178,7 @@ footer a{color:var(--muted)}
   function start(){
     if(frame) return frame;
     frame=document.createElement('iframe');
-    frame.src='play/index.html';
+    frame.src='play/index.html?build=20261026-mobile';
     frame.title='Blockrealm Saga';
     frame.setAttribute('allow','fullscreen; autoplay; gamepad');
     frame.setAttribute('allowfullscreen','');
@@ -185,8 +191,10 @@ footer a{color:var(--muted)}
   }
   playBtn.addEventListener('click',start);
   fsBtn.addEventListener('click',function(){
-    var el=start();var req=el.requestFullscreen||el.webkitRequestFullscreen;
-    if(req) req.call(el);
+    start();
+    var expanded=document.body.classList.toggle('game-expanded');
+    fsBtn.textContent=expanded?'↙ ย่อกลับ':'⛶ เต็มหน้าต่าง';
+    fsBtn.setAttribute('aria-pressed',String(expanded));
   });
   reBtn.addEventListener('click',function(){if(frame){frame.src=frame.src;frame.focus();}});
   // Point the download button at this repository's latest GitHub release.
