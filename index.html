@@ -90,6 +90,7 @@ body.game-expanded main>.stage{flex:1;min-height:0;aspect-ratio:auto;border:0;bo
 body.game-expanded main>.bar{flex:none;margin:0;padding:8px;box-sizing:border-box}
 body.game-expanded main>:not(.stage):not(.bar){display:none}
 body.game-expanded .bar .note{display:none}
+@media (pointer:coarse) and (orientation:portrait){body.rotate-hint .stage::after{content:'หมุนโทรศัพท์เป็นแนวนอนเพื่อเล่นเกม';position:absolute;top:8px;left:10%;right:10%;padding:8px;text-align:center;background:#21190fe8;color:#ffe5a2;z-index:5;pointer-events:none}}
 </style>
 </head>
 <body>
@@ -178,7 +179,7 @@ body.game-expanded .bar .note{display:none}
   function start(){
     if(frame) return frame;
     frame=document.createElement('iframe');
-    frame.src='play/index.html?build=20261026-mobile';
+    frame.src='play/index.html?build=20261026-landscape';
     frame.title='Blockrealm Saga';
     frame.setAttribute('allow','fullscreen; autoplay; gamepad');
     frame.setAttribute('allowfullscreen','');
@@ -189,12 +190,36 @@ body.game-expanded .bar .note{display:none}
     frame.focus();
     return frame;
   }
-  playBtn.addEventListener('click',start);
+  var mobile=matchMedia('(pointer:coarse)').matches;
+  function expanded(value){
+    document.body.classList.toggle('game-expanded',value);
+    fsBtn.textContent=value?'↙ ย่อกลับ':'⛶ เต็มหน้าต่าง';
+    fsBtn.setAttribute('aria-pressed',String(value));
+  }
+  function unlock(){try{if(screen.orientation&&screen.orientation.unlock)screen.orientation.unlock();}catch(e){}}
+  window.blockrealmRestoreDisplay=function(){
+    unlock(); expanded(false); document.body.classList.remove('rotate-hint');
+    if(document.fullscreenElement&&document.exitFullscreen)document.exitFullscreen().catch(function(){});
+  };
+  window.blockrealmEnterDisplay=function(){
+    expanded(true);
+    if(!mobile)return;
+    document.body.classList.add('rotate-hint');
+    var main=stage.parentElement;
+    var request=main.requestFullscreen;
+    var ready=document.fullscreenElement?Promise.resolve():request?request.call(main):Promise.reject();
+    ready.then(function(){
+      if(screen.orientation&&screen.orientation.lock)return screen.orientation.lock('landscape');
+    }).catch(function(){});
+  };
+  document.addEventListener('fullscreenchange',function(){
+    if(!document.fullscreenElement){unlock();expanded(false);document.body.classList.remove('rotate-hint');}
+  });
+  playBtn.addEventListener('click',function(){start();if(mobile)window.blockrealmEnterDisplay();});
   fsBtn.addEventListener('click',function(){
     start();
-    var expanded=document.body.classList.toggle('game-expanded');
-    fsBtn.textContent=expanded?'↙ ย่อกลับ':'⛶ เต็มหน้าต่าง';
-    fsBtn.setAttribute('aria-pressed',String(expanded));
+    if(document.body.classList.contains('game-expanded'))window.blockrealmRestoreDisplay();
+    else window.blockrealmEnterDisplay();
   });
   reBtn.addEventListener('click',function(){if(frame){frame.src=frame.src;frame.focus();}});
   // Point the download button at this repository's latest GitHub release.
