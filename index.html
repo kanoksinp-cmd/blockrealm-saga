@@ -7,6 +7,9 @@
 <meta name="mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 <meta name="theme-color" content="#000000">
+<meta name="apple-mobile-web-app-title" content="Blockrealm">
+<link rel="manifest" href="manifest.webmanifest">
+<link rel="apple-touch-icon" href="play/index.apple-touch-icon.png">
 <title>Blockrealm Saga</title>
 <meta name="description" content="Blockrealm Saga — RPG แฟนตาซีโลกบล็อก 3 มิติ เล่นฟรีบนเบราว์เซอร์ ล่ามอนสเตอร์ รับเควสกิลด์ ไต่แรงก์ F สู่ S">
 <meta property="og:title" content="Blockrealm Saga">
@@ -98,7 +101,7 @@ body.game-expanded main>.bar{flex:none;margin:0;padding:8px;box-sizing:border-bo
 body.game-expanded main>:not(.stage):not(.bar){display:none!important}
 body.game-expanded .bar .note{display:none}
 /* touch devices: the game takes the whole screen, controls float as small buttons */
-body.touch.game-expanded main{padding:env(safe-area-inset-top) env(safe-area-inset-right) env(safe-area-inset-bottom) env(safe-area-inset-left)}
+body.touch.game-expanded main{padding:0}
 body.touch.game-expanded main>.bar{position:absolute;z-index:10;left:calc(env(safe-area-inset-left) + 4px);top:50%;transform:translateY(-50%);
   padding:0;background:none;pointer-events:none}
 body.touch.game-expanded .bar .left{flex-direction:column;gap:6px}
@@ -131,7 +134,7 @@ body.touch.game-expanded .bar .btn.ghost:active{opacity:1}
       </div>
       <span class="note">แนะนำ Chrome หรือ Edge บนคอมพิวเตอร์ · เสียงเริ่มเล่นหลังคลิกในเกม</span>
     </div>
-    <div class="warn" id="mobile">ดูเหมือนคุณใช้มือถือหรือแท็บเล็ต เกมนี้ออกแบบมาสำหรับเมาส์และคีย์บอร์ด เล่นบนคอมพิวเตอร์จะลื่นที่สุด</div>
+    <div class="warn" id="mobile">ดูเหมือนคุณใช้มือถือหรือแท็บเล็ต เกมนี้ออกแบบมาสำหรับเมาส์และคีย์บอร์ด เล่นบนคอมพิวเตอร์จะลื่นที่สุด<span id="ios-tip" hidden><br>อยากได้เต็มจอจริงบน iPhone/iPad: กดปุ่มแชร์ใน Safari → “เพิ่มไปยังหน้าจอโฮม” แล้วเปิดเกมจากไอคอนนั้น</span></div>
 
     <section>
       <h2>Features</h2>
@@ -206,6 +209,10 @@ body.touch.game-expanded .bar .btn.ghost:active{opacity:1}
   }
   var mobile=matchMedia('(pointer:coarse)').matches;
   if(mobile)document.body.classList.add('touch');
+  var standalone=navigator.standalone===true||matchMedia('(display-mode: fullscreen), (display-mode: standalone)').matches;
+  if(standalone)document.body.classList.add('standalone');
+  else if(/iP(hone|ad|od)/.test(navigator.userAgent)||(navigator.platform==='MacIntel'&&navigator.maxTouchPoints>1))
+    document.getElementById('ios-tip').hidden=false;
   // Real viewport height: iOS / in-app browsers often report 100vh/100dvh larger than what is visible.
   function fitHeight(){
     var h=(window.visualViewport&&window.visualViewport.height)||window.innerHeight;
