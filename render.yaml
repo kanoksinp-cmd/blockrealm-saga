@@ -1,0 +1,12 @@
+# Render Blueprint: the online server (WebSocket /ws) for Blockrealm Saga.
+# It also serves the website, so https://blockrealm-saga-server.onrender.com/ works as a full copy of the site.
+services:
+  - type: web
+    name: blockrealm-saga-server
+    runtime: node
+    plan: free
+    rootDir: server
+    buildCommand: npm install
+    startCommand: node server.js
+    healthCheckPath: /health
+    autoDeploy: true

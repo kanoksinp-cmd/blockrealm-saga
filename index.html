@@ -190,13 +190,20 @@ body.touch.game-expanded .bar .btn.ghost:active{opacity:1}
 </div>
 
 <script>
+// Online server (players see each other + chat). The game reads window.BLOCKREALM_WS.
+(function(){
+  var h=location.hostname, same=h.indexOf('blockrealm-saga-server')===0||h==='localhost'||h==='127.0.0.1';
+  window.BLOCKREALM_WS=same?(location.protocol==='https:'?'wss://':'ws://')+location.host+'/ws':'wss://blockrealm-saga-server.onrender.com/ws';
+  // wake the free server early so it is ready when the game finishes loading
+  try{fetch(window.BLOCKREALM_WS.replace(/^ws/,'http').replace(/\/ws$/,'/health'),{mode:'no-cors',cache:'no-store'}).catch(function(){});}catch(e){}
+})();
 (function(){
   var stage=document.getElementById('stage'),cover=document.getElementById('cover'),
       playBtn=document.getElementById('play'),fsBtn=document.getElementById('fs'),reBtn=document.getElementById('reload'),frame=null;
   function start(){
     if(frame) return frame;
     frame=document.createElement('iframe');
-    frame.src='play/index.html?build=20261028-update';
+    frame.src='play/index.html?build=20261029-online';
     frame.title='Blockrealm Saga';
     frame.setAttribute('allow','fullscreen; autoplay; gamepad');
     frame.setAttribute('allowfullscreen','');
