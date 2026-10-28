@@ -2,7 +2,11 @@
 <html lang="th">
 <head>
 <meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="theme-color" content="#000000">
 <title>Blockrealm Saga</title>
 <meta name="description" content="Blockrealm Saga — RPG แฟนตาซีโลกบล็อก 3 มิติ เล่นฟรีบนเบราว์เซอร์ ล่ามอนสเตอร์ รับเควสกิลด์ ไต่แรงก์ F สู่ S">
 <meta property="og:title" content="Blockrealm Saga">
@@ -84,12 +88,22 @@ footer a{color:var(--muted)}
   .hint{font-size:12px;text-align:center;margin:0 12px}
 }
 @media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}.btn{transition:none}}
-body.game-expanded{overflow:hidden}
-body.game-expanded main{position:fixed;inset:0;z-index:1000;box-sizing:border-box;width:100%;max-width:none;height:100dvh;margin:0;padding:0;display:flex;flex-direction:column;background:#111;border:0;border-radius:0}
-body.game-expanded main>.stage{flex:1;min-height:0;aspect-ratio:auto;border:0;border-radius:0}
+body.touch .warn{display:block}
+html.game-expanded,body.game-expanded{overflow:hidden;height:100%;overscroll-behavior:none}
+body.game-expanded{position:fixed;inset:0;width:100%}
+body.game-expanded main{position:fixed;top:0;left:0;right:0;bottom:0;z-index:1000;box-sizing:border-box;width:100%;max-width:none;
+  height:100vh;height:100dvh;height:var(--app-h,100dvh);margin:0;padding:0;display:flex;flex-direction:column;background:#000;border:0;border-radius:0;box-shadow:none}
+body.game-expanded main>.stage{flex:1;min-height:0;aspect-ratio:auto;border:0;border-radius:0;box-shadow:none}
 body.game-expanded main>.bar{flex:none;margin:0;padding:8px;box-sizing:border-box}
-body.game-expanded main>:not(.stage):not(.bar){display:none}
+body.game-expanded main>:not(.stage):not(.bar){display:none!important}
 body.game-expanded .bar .note{display:none}
+/* touch devices: the game takes the whole screen, controls float as small buttons */
+body.touch.game-expanded main{padding:env(safe-area-inset-top) env(safe-area-inset-right) env(safe-area-inset-bottom) env(safe-area-inset-left)}
+body.touch.game-expanded main>.bar{position:absolute;z-index:10;left:calc(env(safe-area-inset-left) + 4px);top:50%;transform:translateY(-50%);
+  padding:0;background:none;pointer-events:none}
+body.touch.game-expanded .bar .left{flex-direction:column;gap:6px}
+body.touch.game-expanded .bar .btn.ghost{pointer-events:auto;font-size:12px;padding:6px 8px;opacity:.55;box-shadow:none;border-radius:6px}
+body.touch.game-expanded .bar .btn.ghost:active{opacity:1}
 @media (pointer:coarse) and (orientation:portrait){body.rotate-hint .stage::after{content:'หมุนโทรศัพท์เป็นแนวนอนเพื่อเล่นเกม';position:absolute;top:8px;left:10%;right:10%;padding:8px;text-align:center;background:#21190fe8;color:#ffe5a2;z-index:5;pointer-events:none}}
 </style>
 </head>
@@ -191,10 +205,22 @@ body.game-expanded .bar .note{display:none}
     return frame;
   }
   var mobile=matchMedia('(pointer:coarse)').matches;
+  if(mobile)document.body.classList.add('touch');
+  // Real viewport height: iOS / in-app browsers often report 100vh/100dvh larger than what is visible.
+  function fitHeight(){
+    var h=(window.visualViewport&&window.visualViewport.height)||window.innerHeight;
+    document.documentElement.style.setProperty('--app-h',Math.round(h)+'px');
+  }
+  fitHeight();
+  window.addEventListener('resize',fitHeight);
+  window.addEventListener('orientationchange',function(){setTimeout(fitHeight,250);});
+  if(window.visualViewport)window.visualViewport.addEventListener('resize',fitHeight);
   function expanded(value){
+    document.documentElement.classList.toggle('game-expanded',value);
     document.body.classList.toggle('game-expanded',value);
     fsBtn.textContent=value?'↙ ย่อกลับ':'⛶ เต็มหน้าต่าง';
     fsBtn.setAttribute('aria-pressed',String(value));
+    if(value){window.scrollTo(0,0);fitHeight();}
   }
   function unlock(){try{if(screen.orientation&&screen.orientation.unlock)screen.orientation.unlock();}catch(e){}}
   window.blockrealmRestoreDisplay=function(){
@@ -206,8 +232,8 @@ body.game-expanded .bar .note{display:none}
     if(!mobile)return;
     document.body.classList.add('rotate-hint');
     var main=stage.parentElement;
-    var request=main.requestFullscreen;
-    var ready=document.fullscreenElement?Promise.resolve():request?request.call(main):Promise.reject();
+    var request=main.requestFullscreen||main.webkitRequestFullscreen;
+    var ready=document.fullscreenElement?Promise.resolve():request?(function(){try{return Promise.resolve(request.call(main));}catch(e){return Promise.reject(e);}})():Promise.reject();
     ready.then(function(){
       if(screen.orientation&&screen.orientation.lock)return screen.orientation.lock('landscape');
     }).catch(function(){});
@@ -229,7 +255,6 @@ body.game-expanded .bar .note{display:none}
     var repo=(seg&&seg!=='index.html')?seg:h;
     dl.href='https://github.com/'+user+'/'+repo+'/releases/latest';
   }
-  if(matchMedia('(pointer:coarse)').matches) document.getElementById('mobile').style.display='block';
 })();
 </script>
 </body>
