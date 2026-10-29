@@ -262,14 +262,22 @@ body.touch.game-expanded main>.bar{display:none!important}
   function start(){
     if(frame) return frame;
     frame=document.createElement('iframe');
-    frame.src='play/index.html?build=20261029-events';
+    frame.src='play/index.html?build=20261029-fs';
     frame.title='Blockrealm Saga';
     frame.setAttribute('allow','fullscreen; autoplay; gamepad');
     frame.setAttribute('allowfullscreen','');
     stage.appendChild(frame);
     cover.remove();
     reBtn.hidden=false;
-    frame.addEventListener('load',function(){try{frame.contentWindow.focus();}catch(e){}});
+    frame.addEventListener('load',function(){
+      try{frame.contentWindow.focus();}catch(e){}
+      // phones: a tap inside the game puts the browser back into full screen
+      // (it drops out when the keyboard opens, on swipe-back, notifications...)
+      try{
+        var w=frame.contentWindow;
+        ['touchend','pointerup'].forEach(function(t){w.addEventListener(t,refullscreen,true);});
+      }catch(e){}
+    });
     frame.focus();
     return frame;
   }
@@ -301,11 +309,21 @@ body.touch.game-expanded main>.bar{display:none!important}
     if(frame){var u=frame.src;frame.src='about:blank';setTimeout(function(){frame.src=u;},50);}
     else{location.reload();}
   };
+  var userExited=false,lastExit=0;
+  function refullscreen(){
+    if(!mobile||userExited||document.fullscreenElement||document.webkitFullscreenElement)return;
+    if(Date.now()-lastExit<800)return;
+    try{var a=frame&&frame.contentDocument&&frame.contentDocument.activeElement;
+      if(a&&(a.tagName==='INPUT'||a.tagName==='TEXTAREA'))return;}catch(e){}   // typing in chat: keep the keyboard
+    window.blockrealmEnterDisplay();
+  }
   window.blockrealmRestoreDisplay=function(){
+    userExited=true;
     unlock(); expanded(false); document.body.classList.remove('rotate-hint');
     if(document.fullscreenElement&&document.exitFullscreen)document.exitFullscreen().catch(function(){});
   };
   window.blockrealmEnterDisplay=function(){
+    userExited=false;
     expanded(true);
     if(!mobile)return;
     document.body.classList.add('rotate-hint');
@@ -317,7 +335,14 @@ body.touch.game-expanded main>.bar{display:none!important}
     }).catch(function(){});
   };
   document.addEventListener('fullscreenchange',function(){
-    if(!document.fullscreenElement){unlock();expanded(false);document.body.classList.remove('rotate-hint');}
+    if(document.fullscreenElement)return;
+    lastExit=Date.now();
+    // phones: the browser left full screen by itself - keep the game filling the screen
+    if(mobile&&!userExited){expanded(true);window.scrollTo(0,0);fitHeight();return;}
+    unlock();expanded(false);document.body.classList.remove('rotate-hint');
+  });
+  document.addEventListener('webkitfullscreenchange',function(){
+    if(!document.webkitFullscreenElement&&mobile&&!userExited){lastExit=Date.now();expanded(true);fitHeight();}
   });
   playBtn.addEventListener('click',function(){start();if(mobile)window.blockrealmEnterDisplay();});
   fsBtn.addEventListener('click',function(){
