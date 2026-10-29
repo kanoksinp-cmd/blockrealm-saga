@@ -111,6 +111,7 @@ wss.on('connection', (ws, req) => {
     id: nextId++, ws, ready: false, name: 'Adventurer', job: 'swordsman', lv: 1,
     look: {}, equip: {}, refine: {}, state: [0, 0, 0, 0, 0, 0, 0], dirty: false,
     lastChat: 0, alive: true, msgs: 0, msgWindow: Date.now(),
+    party: null, invites: new Map(), lastGift: 0,
   };
   players.set(p.id, p);
 
@@ -142,6 +143,8 @@ wss.on('connection', (ws, req) => {
           console.log(`join #${p.id} ${p.name} (${players.size} online)`);
         } else {
           broadcast({ t: 'look', p: publicInfo(p) }, p.id);
+          const pt = p.party && parties.get(p.party);
+          if (pt) sendParty(pt);
         }
         break;
       }
@@ -153,7 +156,69 @@ wss.on('connection', (ws, req) => {
         const text = clean(m.msg, CHAT_MAX);
         if (!text || now - p.lastChat < CHAT_GAP_MS) break;
         p.lastChat = now;
-        broadcast({ t: 'chat', id: p.id, name: p.name, msg: text });
+        const pt = m.party && p.party && parties.get(p.party);
+        if (pt) {
+          for (const id of pt.members) { const x = players.get(id); if (x) send(x.ws, { t: 'chat', id: p.id, name: p.name, msg: text, party: true }); }
+        } else {
+          broadcast({ t: 'chat', id: p.id, name: p.name, msg: text });
+        }
+        break;
+      }
+      case 'invite': {            // {to}
+        const to = players.get(Number(m.to));
+        if (!p.ready || !to || !to.ready || to.id === p.id) break;
+        const mine = p.party && parties.get(p.party);
+        if (mine && mine.members.length >= PARTY_MAX) { send(ws, { t: 'notice', key: 'party_full' }); break; }
+        if (mine && mine.members.includes(to.id)) break;
+        if (to.party) { send(ws, { t: 'notice', key: 'in_party', name: to.name }); break; }
+        to.invites.set(p.id, now);
+        send(to.ws, { t: 'invite', from: p.id, name: p.name, lv: p.lv, job: p.job });
+        send(ws, { t: 'notice', key: 'invite_sent', name: to.name });
+        break;
+      }
+      case 'invite_reply': {      // {to: inviterId, ok}
+        const from = players.get(Number(m.to));
+        const at = p.invites.get(Number(m.to));
+        p.invites.delete(Number(m.to));
+        if (!from || !at || now - at > 120000) { send(ws, { t: 'notice', key: 'invite_expired' }); break; }
+        if (!m.ok) { send(from.ws, { t: 'notice', key: 'invite_declined', name: p.name }); break; }
+        if (p.party) leaveParty(p, 'left');
+        let pt = from.party && parties.get(from.party);
+        if (!pt) { pt = { id: nextParty++, leader: from.id, members: [from.id] }; parties.set(pt.id, pt); from.party = pt.id; }
+        if (pt.members.length >= PARTY_MAX) { send(ws, { t: 'notice', key: 'party_full' }); break; }
+        pt.members.push(p.id);
+        p.party = pt.id;
+        for (const id of pt.members) { const x = players.get(id); if (x && id !== p.id) send(x.ws, { t: 'party_note', name: p.name, what: 'joined' }); }
+        sendParty(pt);
+        break;
+      }
+      case 'party_leave':
+        if (p.party) leaveParty(p, 'left');
+        break;
+      case 'party_kick': {        // leader only
+        const pt = p.party && parties.get(p.party);
+        const to = players.get(Number(m.to));
+        if (pt && pt.leader === p.id && to && to.party === pt.id && to.id !== p.id) leaveParty(to, 'kicked');
+        break;
+      }
+      case 'pexp': {              // share kill EXP with the party: {amount, x, z}
+        const pt = p.party && parties.get(p.party);
+        if (!pt) break;
+        const amount = Math.max(0, Math.min(5000000, Math.floor(Number(m.amount) || 0)));
+        if (!amount) break;
+        for (const id of pt.members) { if (id === p.id) continue; const x = players.get(id); if (x) send(x.ws, { t: 'pexp', from: p.id, name: p.name, amount, x: num(m.x, 1e5), z: num(m.z, 1e5) }); }
+        break;
+      }
+      case 'gift': {              // {to, item, n}
+        const to = players.get(Number(m.to));
+        const item = clean(m.item, 48);
+        const n = Math.max(1, Math.min(9999, Math.floor(Number(m.n) || 1)));
+        if (!p.ready || !item || !/^[a-z0-9_]+$/.test(item)) break;
+        if (!to || !to.ready || to.id === p.id || now - p.lastGift < 300) { send(ws, { t: 'gift_fail', item, n, to: Number(m.to) }); break; }
+        p.lastGift = now;
+        send(to.ws, { t: 'gift', from: p.id, name: p.name, item, n });
+        send(ws, { t: 'gift_ok', to: to.id, name: to.name, item, n });
+        console.log(`gift ${p.name} -> ${to.name}: ${item} x${n}`);
         break;
       }
       case 'ping':
@@ -163,6 +228,7 @@ wss.on('connection', (ws, req) => {
   });
 
   ws.on('close', () => {
+    if (p.party) leaveParty(p, 'offline');
     players.delete(p.id);
     if (p.ready) {
       broadcast({ t: 'leave', id: p.id });
@@ -174,7 +240,39 @@ wss.on('connection', (ws, req) => {
 
 function readState(s) {
   return [num(s[0], 1e5), num(s[1], 1e5), num(s[2], 1e5), num(s[3], 100), s[4] ? 1 : 0,
-    Math.floor(Math.abs(Number(s[5]) || 0)) % 1000, s[6] ? 1 : 0];
+    Math.floor(Math.abs(Number(s[5]) || 0)) % 1000, s[6] ? 1 : 0,
+    Math.max(0, Math.min(100, Math.round(Number(s[7] == null ? 100 : s[7]) || 0)))];
+}
+
+// ------------------------------------------------------------------ parties (max 4 players)
+const PARTY_MAX = 4;
+let nextParty = 1;
+const parties = new Map();   // id -> {id, leader, members: [playerId]}
+
+function partyInfo(pt) {
+  return { t: 'party', id: pt.id, leader: pt.leader, members: pt.members.map(id => {
+    const m = players.get(id); return m ? { id, name: m.name, job: m.job, lv: m.lv } : null; }).filter(Boolean) };
+}
+
+function sendParty(pt) {
+  const msg = partyInfo(pt);
+  for (const id of pt.members) { const m = players.get(id); if (m) send(m.ws, msg); }
+}
+
+function leaveParty(p, reason) {
+  const pt = p.party && parties.get(p.party);
+  p.party = null;
+  if (!pt) return;
+  pt.members = pt.members.filter(id => id !== p.id);
+  send(p.ws, { t: 'party', id: 0, leader: 0, members: [], reason: reason || 'left' });
+  for (const id of pt.members) { const m = players.get(id); if (m) send(m.ws, { t: 'party_note', name: p.name, what: reason || 'left' }); }
+  if (pt.members.length < 2) {
+    for (const id of pt.members) { const m = players.get(id); if (m) { m.party = null; send(m.ws, { t: 'party', id: 0, leader: 0, members: [], reason: 'disbanded' }); } }
+    parties.delete(pt.id);
+    return;
+  }
+  if (pt.leader === p.id) pt.leader = pt.members[0];
+  sendParty(pt);
 }
 
 // position snapshots for everyone who moved
