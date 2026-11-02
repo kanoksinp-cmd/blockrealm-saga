@@ -1,0 +1,6 @@
+{
+  "hand_axe": "\"hand_axe\": {\"name\": \"Hand Axe\", \"type\": \"weapon\", \"atk\": 27, \"price\": 800, \"weight\": 80, \"sprite\": \"axe\",",
+  "battle_axe": "\"battle_axe\": {\"two_hand\": true, \"bonus\": {\"STR\": 3}, \"name\": \"Battle Axe\", \"type\": \"weapon\", \"atk\": 46, \"price\": 3400, \"weight\": 100, \"sprite\": \"axe\",",
+  "frost_axe": "\"frost_axe\": {\"two_hand\": true, \"bonus\": {\"STR\": 4}, \"name\": \"Frost Axe\", \"type\": \"weapon\", \"atk\": 96, \"price\": 11000, \"weight\": 110, \"sprite\": \"axe\", \"pal\": \"frost\",",
+  "arcane_axe": "\"arcane_axe\": {\"two_hand\": true, \"name\": \"Crescent Axe\", \"type\": \"weapon\", \"atk\": 140, \"price\": 32000, \"weight\": 110, \"sprite\": \"axe\", \"model\": \"arcane_axe\","
+}

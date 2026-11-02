@@ -1,0 +1,23 @@
+{
+  ".gdignore": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+  "axes_preview.png": "1742c246d20283eba63b1781d497eb6e7aa918b2b9b8f2f04390cb1248b10977",
+  "README.md": "939e9167771690a0c501caff4f38b6ff2a658d6ff3e8473e6a1b7baa97300468",
+  "scenes/axe_replacement_test.tscn": "23ee2f4e0da5b3f932baef61bfa9fa4ff17058f3ad0adf4c1ea8f34474826f19",
+  "scripts/axe_replacement_test.gd": "e7c5470b785446303a3ad8ad699055e2c562f9bcb7216496cba8d75f077e676e",
+  "source/build_axes.py": "8b39fa194c896f3ec63333059dd8ed1a7c1f1c4e4b6886bb4afb016144100c8e",
+  "source/model_validation.json": "ddb4c650594615c3635cd4867f43e8452b933ad1edf0a15bf0070e3569545e7b",
+  "source/optimize_export.py": "b4c0814606d658ccd4ff47831d4a6c600b1e62bf26f7c1d55083ef77017ba496",
+  "source/original_item_definitions.json": "cfda10ca7b083a25ccc2897eea4215163c3fb8c19b93a348bd5c10ce40de3fd1",
+  "source/Reforged_Axes.blend": "ce1025eb34db824b969bfe5ef96493fcaed98fd043f66da56cd9ed23758daecc",
+  "source/render_icons.py": "0849d31d87ebea7840e3df3982e7ecbe07883880a2fa8b266516a7a030c808e1",
+  "assets/icons/items/arcane_axe.png": "98c68f6941531849f4cadc491f3273156df8cb3a3fdb75a0898626fc3b76d77b",
+  "assets/icons/items/battle_axe.png": "ef6ff2f9d8056fe00f336db3bc4b16968fa2a1220ef20542d757773a56c2f026",
+  "assets/icons/items/frost_axe.png": "0f37fe2cd5ad863cdf27f25def60f09e3bc9248ca1bc209f2edb4853abec4da2",
+  "assets/icons/items/hand_axe.png": "920fb8a824434c872454915d737cf00f4754e5e5b2cee112403d7c4177d7804f",
+  "assets/models/arcane/reforged_arcane_axe.glb": "7baa2f39f23f02a727f88f1f14724942c364c90baac9f2303163c4c8de067f9d",
+  "assets/models/arcane/reforged_battle_axe.glb": "4a3abaed86fa22be601374896ee181c343a16b9a4ebb48c273b106aa8dc820f5",
+  "assets/models/arcane/reforged_frost_axe.glb": "23a30e600dfc85e77948fd3b5f5bc60adbefecb1b2cf224614cfca04c2111390",
+  "assets/models/arcane/reforged_hand_axe.glb": "3f1e227ce16c31ba1709a3ae3c13e151c3b605b3c18d694fc090ce9383af6a3e",
+  "scripts/game/items.gd": "d34b72865ddd576d564f1bd980c93d5816ce7e04a787df1fbdc47b443f64032c",
+  "scripts/voxel/avatar.gd": "17fd6f525ff1d283ad1d01926200a0006808c1764943bee1089cac7327ae912e"
+}

@@ -1,0 +1,26 @@
+{
+  "hand_axe": {
+    "authoring_parts": 14,
+    "runtime_meshes": 1,
+    "material_surfaces": 25,
+    "bytes": 145332
+  },
+  "battle_axe": {
+    "authoring_parts": 19,
+    "runtime_meshes": 1,
+    "material_surfaces": 25,
+    "bytes": 207160
+  },
+  "frost_axe": {
+    "authoring_parts": 25,
+    "runtime_meshes": 1,
+    "material_surfaces": 30,
+    "bytes": 256648
+  },
+  "arcane_axe": {
+    "authoring_parts": 28,
+    "runtime_meshes": 1,
+    "material_surfaces": 30,
+    "bytes": 281928
+  }
+}
