@@ -1,0 +1,29 @@
+{
+  "head": {
+    "meshes": 15,
+    "bytes": 28320
+  },
+  "torso": {
+    "meshes": 25,
+    "bytes": 44072
+  },
+  "arm_l": {
+    "meshes": 4,
+    "bytes": 10336
+  },
+  "arm_r": {
+    "meshes": 4,
+    "bytes": 10340
+  },
+  "leg_l": {
+    "meshes": 5,
+    "bytes": 12764
+  },
+  "leg_r": {
+    "meshes": 5,
+    "bytes": 12764
+  },
+  "pets": {
+    "bytes": 63648
+  }
+}

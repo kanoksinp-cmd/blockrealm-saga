@@ -1,0 +1,14 @@
+[
+  {
+    "pet": "SPIRIT A | floating",
+    "follows_translation_and_rotation": true,
+    "hover_range": 0.2199999988079071,
+    "seamless_loop": true
+  },
+  {
+    "pet": "SPIRIT B | floating",
+    "follows_translation_and_rotation": true,
+    "hover_range": 0.2199999988079071,
+    "seamless_loop": true
+  }
+]
