@@ -8,6 +8,33 @@ func _ready():call_deferred("run")
 func run():
 	Game.slot=4;Game.appearance=Avatar.default_appearance();Game.appearance.job="mage";Game.job_id="mage";Game.job="Mage"
 	Game.equip=Game._empty_equip();Game.base_level=20
+	Game.fashion_unlocks=[];Game.inventory={};Game.zeny=0
+	var recipe: Dictionary=Game.FOREST_MAGE_RECIPE
+	check(not Game.set_mage_fashion("forest_mage"),"cannot wear before crafting")
+	check(not Game.craft(recipe) and not Game.owns_mage_fashion(),"missing resources prevent unlock")
+	for id in recipe.mats:Game.inventory[id]=int(recipe.mats[id])+1
+	Game.zeny=int(recipe.zeny)-1
+	check(not Game.craft(recipe),"insufficient Zeny blocks crafting")
+	Game.zeny=int(recipe.zeny);Game.job_id="swordsman"
+	check(not Game.craft(recipe),"nonmage cannot craft")
+	Game.job_id="mage"
+	var cheap=recipe.duplicate(true);cheap.zeny=0
+	check(not Game.craft(cheap),"altered recipe rejected")
+	check(Game.craft(recipe) and Game.owns_mage_fashion(),"craft permanently unlocks fashion")
+	check(Game.zeny==0,"exact currency deducted")
+	for id in recipe.mats:check(Game.count(id)==1,"exact material deduction "+id)
+	check(Game.count("forest_mage_fashion")==0,"permanent unlock does not clutter inventory")
+	for id in recipe.mats:Game.inventory[id]=99
+	Game.zeny=99999;var mats_before=Game.inventory.duplicate(true)
+	check(not Game.craft(recipe) and Game.zeny==99999 and Game.inventory==mats_before,"duplicate craft never consumes resources")
+	Game.save_game()
+	Game.slot=3;Game.new_character("QA fresh",Avatar.default_appearance())
+	check(not Game.owns_mage_fashion(),"new character has no unlock")
+	check(Game.load_game(4) and Game.owns_mage_fashion(),"crafted unlock persists per character")
+	var legacy=ConfigFile.new();legacy.load(Game.slot_path(4));legacy.erase_section_key("char","fashion_unlocks")
+	var legacy_look=legacy.get_value("char","appearance");legacy_look.fashion="forest_mage";legacy.set_value("char","appearance",legacy_look);legacy.save(Game.slot_path(2))
+	check(Game.load_game(2) and not Game.owns_mage_fashion() and Game.appearance.get("fashion", "")=="","old free fashion save must craft first")
+	check(Game.load_game(4) and Game.owns_mage_fashion(),"switching slots restores original ownership")
 	var stats_before=[Game.atk(),Game.def(),Game.max_hp(),Game.max_sp(),Game.inventory.duplicate(true),Game.zeny,Game.equip.duplicate(true)]
 	check(Game.set_mage_fashion("forest_mage"),"mage can equip")
 	check([Game.atk(),Game.def(),Game.max_hp(),Game.max_sp(),Game.inventory,Game.zeny,Game.equip]==stats_before,"cosmetics never alter stats or inventory")
@@ -34,6 +61,8 @@ func run():
 	check(not Game.appearance.has("weapon_model"),"original equipped weapon stays untouched")
 	check(Game.set_mage_fashion("forest_mage"),"reequip succeeds")
 	var ui=load("res://scripts/ui/ro_ui.gd").new();add_child(ui)
+	ui._smith_tab=7;ui._fill_smith()
+	check(ui._smith_tabs.size()==8,"fashion recipe tab exists")
 	ui._inv.panel.show();ui._open_mage_fashion()
 	check(ui._dialog.panel.visible,"wardrobe menu opens")
 	ui._dialog.panel.hide();ui._inv.panel.hide()

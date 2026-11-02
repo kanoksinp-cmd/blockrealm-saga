@@ -1,9 +1,9 @@
 {
   ".gdignore": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
   "forest_mage_game_preview.png": "301626f4531049d82309eea28a31be974927bcac177f7791dfed467225a82355",
-  "README.md": "30a99df20f36eb7a4be1a315ad3301a9ead8dac25a0606dfc0dd764c7273d2d6",
+  "README.md": "ae9e1902f8b76fc98b54f09ef7804b61e190df3c2a6e23b68b474598a6062d2c",
   "scenes/forest_fashion_test.tscn": "bebe3ce2a3cc4db191cfa7a10899be05a9fd3d1206541db80ff78aec47ef44e6",
-  "scripts/forest_fashion_test.gd": "046d51673e8e8bd1fc772164a65a8da20d109fe7b92231006527a299bdbc84b3",
+  "scripts/forest_fashion_test.gd": "0c5443cac668e8549e8c63467cb6a7181c114aeda3b1aa7b07c736b69d9e426f",
   "source/export_for_game.py": "9470f4e11d80ab315eda24103f7d96024da6c59ca2b3259c0c7434d23edc22c8",
   "source/forest_mage_flying_pets.blend": "ae33627a010c1fd537d05af98b9c7bfd6446b41642a4ed7dfd393a86177de42f",
   "source/game_export_validation.json": "3eded5913ea052b5553ac2c2c5186ae66248257fc261ad02fe60685d1fdeaa19",
@@ -99,8 +99,9 @@
   "assets/models/forest_mage/torso_Warm ivory face_pixel_atlas.png": "5765b9a43f6fc3e019badca950cd773cac6122c4634c198948d324eefa1f1534",
   "assets/models/forest_mage/torso_Warm ivory face_pixel_atlas.png.import": "31105e70c24b785fab01e52e1a3e46384bd2b09012cd7b0474cc22c61eb3d9ad",
   "scripts/characters/knight_model.gd": "85cad2504704b3c905a2c04be03634bc0d46da81ab9162e1a292dda9ae1be29a",
-  "scripts/game/game_state.gd": "c7c00c3807f936a50c4f68eb10ecd3da4b0ab9dba038c0cce45ff1ec82e258e4",
-  "scripts/ui/ro_ui.gd": "adfec75755580da4a1fddb5fa2e5c37bebd255389b0aa8da1b0e8e020473c8aa",
+  "scripts/game/game_state.gd": "0a304d33cf09580bc6295fde54a279ca73b2a56dff2b90f3cdfebc65ce3c5d7b",
+  "scripts/game/items.gd": "ee4d778165a93f625557d21b4e66dcdb3d7699bf1e6192398cbbf95dc04d9b21",
+  "scripts/ui/ro_ui.gd": "22269ad4708d5b6e776739c236c1e721cfe887a4f859df7ee64e37d86a63a41e",
   "scripts/voxel/avatar.gd": "2ba3ecafb35ec706cd67d48217127801b88fcd410ca91130ef4c5a0ff3e28eee",
   "scripts/voxel/forest_mage_fashion.gd": "ed9eab1828db010182b087292692c6ade95b2c7a884bd4383d9cd9148e150de8"
 }

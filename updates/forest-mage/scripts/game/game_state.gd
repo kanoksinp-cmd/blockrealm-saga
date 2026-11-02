@@ -31,6 +31,7 @@ var job_exp := 0
 var past_job_levels: Array = [] # final job level of every earlier tier (skill points)
 var bonus_skill_points := 0     # kept from saves made before job levels existed
 var planned_job := ""           # 1st job picked at character creation (suggested at Job Lv 10)
+var fashion_unlocks: Array = []  # permanently crafted cosmetics, per character
 var appearance := {}            # from the character creator (empty = classic knight)
 var character_ready := false    # true once a character was created / loaded
 var base_level := 1
@@ -75,7 +76,7 @@ const SAVE_PATH := "user://save.cfg"      # old single-slot save (moved to slot 
 const MAX_SLOTS := 5
 const SLOTS_META := "user://slots.cfg"
 var slot := 0                                  # active character slot (0 .. MAX_SLOTS-1)
-const SAVE_KEYS := ["player_name", "job", "job_id", "appearance", "base_level", "base_exp", "stats", "stat_points",
+const SAVE_KEYS := ["player_name", "job", "job_id", "appearance", "fashion_unlocks", "base_level", "base_exp", "stats", "stat_points",
 	"hp", "sp", "zeny", "inventory", "equip", "quests", "save_point", "skill_levels", "skill_points", "job_tier", "job_branch", "job_level", "job_exp", "past_job_levels", "bonus_skill_points", "planned_job", "story_step", "guild_member", "guild_rank", "guild_points", "board_offers", "board_active", "board_seed", "board_done", "hotbar", "world_hour", "auto_cfg", "refine", "visited_areas", "world_day", "party", "party_seed"]
 
 
@@ -111,7 +112,9 @@ func _notification(what: int) -> void:
 # ------------------------------------------------------------------ character / save
 ## Creator appearance + equipped gear (what the 3D model should look like).
 func dressed_appearance() -> Dictionary:
-	return Avatar.dress(appearance, equip, refine)
+	var look := appearance.duplicate(true)
+	if look.get("fashion", "") == "forest_mage" and not owns_mage_fashion():look.fashion=""
+	return Avatar.dress(look, equip, refine)
 
 
 func job_info() -> Dictionary:
@@ -133,7 +136,9 @@ func new_character(char_name: String, look: Dictionary) -> void:
 	job_exp = 0
 	past_job_levels = []
 	bonus_skill_points = 0
+	fashion_unlocks = []
 	appearance = look.duplicate(true)
+	appearance["fashion"]=""
 	appearance.job = "novice"
 	base_level = 1
 	base_exp = 0
@@ -252,6 +257,7 @@ func load_game(i := -1) -> bool:
 	auto_quest_giver = ""
 	equip = _empty_equip()
 	quests = {}
+	fashion_unlocks = []
 	story_step = 0
 	guild_member = false
 	guild_rank = 0
@@ -283,6 +289,8 @@ func load_game(i := -1) -> bool:
 	for k in SAVE_KEYS:
 		if cfg.has_section_key("char", k):
 			set(k, cfg.get_value("char", k))
+	fashion_unlocks = ["forest_mage"] if "forest_mage" in fashion_unlocks else []
+	if appearance.get("fashion", "") == "forest_mage" and not owns_mage_fashion():appearance.fashion=""
 	for k in auto_defaults:
 		if not auto_cfg.has(k):
 			auto_cfg[k] = auto_defaults[k]
@@ -894,6 +902,8 @@ const BOW_RECIPES := [
 
 
 func can_craft(r: Dictionary) -> bool:
+	if r.get("id", "") == "forest_mage_fashion":
+		if r != FOREST_MAGE_RECIPE or job_id != "mage" or owns_mage_fashion():return false
 	if zeny < int(r.zeny):
 		return false
 	for m in r.mats:
@@ -908,7 +918,10 @@ func craft(r: Dictionary) -> bool:
 	for m in r.mats:
 		remove_item(m, int(r.mats[m]))
 	zeny -= int(r.zeny)
-	add_item(r.id, 1)
+	if r.id == "forest_mage_fashion":
+		fashion_unlocks.append("forest_mage")
+		save_game()
+	else:add_item(r.id, 1)
 	log_msg(tr("Crafted %s!") % Items.item_name(r.id), Color(0.95, 0.75, 0.2))
 	Audio.play("craft")
 	changed.emit()
@@ -1218,9 +1231,15 @@ func allocate_build(mode: String) -> void:
 func set_mage_fashion(id: String) -> bool:
 	if id not in ["", "forest_mage"]:return false
 	if id != "" and job_id != "mage":return false
+	if id == "forest_mage" and not owns_mage_fashion():
+		log_msg("ต้องคราฟชุด Forest Mage กับ Blacksmith Doran ก่อน", Color(1,.7,.4));return false
 	if appearance.is_empty():appearance=Avatar.default_appearance();appearance.job=job_id
 	appearance["fashion"]=id
 	changed.emit()
 	inventory_changed.emit()
 	save_game()
 	return true
+
+
+const FOREST_MAGE_RECIPE := {"id":"forest_mage_fashion", "zeny":10000, "mats":{"living_vine":12,"moss_clump":15,"flower_petal":8,"treant_heart":1}}
+func owns_mage_fashion() -> bool:return "forest_mage" in fashion_unlocks

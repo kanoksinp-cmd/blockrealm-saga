@@ -3261,7 +3261,7 @@ func _build_smith() -> void:
 	_smith = _window("Blacksmith", Vector2(360, 100), Vector2(720, 0), R_RED)
 	var tabs := HBoxContainer.new()
 	tabs.add_theme_constant_override("separation", 4)
-	for t in [["Refine", 0], ["Craft", 1], ["Ore & Fish", 6], ["Wyvern Wings", 2], ["Arcane Gear", 3], ["Arcane Bows", 4], ["Celestial Staves", 5]]:
+	for t in [["Refine", 0], ["Craft", 1], ["Ore & Fish", 6], ["Wyvern Wings", 2], ["Arcane Gear", 3], ["Arcane Bows", 4], ["Celestial Staves", 5], ["แฟชั่น", 7]]:
 		var b := _button(t[0], func() -> void:
 			_smith_tab = t[1]
 			_fill_smith(), 0)
@@ -3397,6 +3397,8 @@ func _fill_smith() -> void:
 			_smith_list.add_child(card)
 	elif _smith_tab == 2:
 		_fill_wings()
+	elif _smith_tab == 7:
+		_fill_recipe_cards([Game.FOREST_MAGE_RECIPE], "คราฟชุด Forest Mage เพื่อปลดล็อกแฟชั่นถาวรให้ตัวละครนักเวท ไม่เพิ่มค่าสถานะ" + (" • คราฟแล้ว" if Game.owns_mage_fashion() else ""))
 	elif _smith_tab == 6:
 		_fill_recipe_cards(Game.GATHER_RECIPES, "Gear forged from what you mine and fish. Click an ore rock to mine it (a few swings per haul, it grows back later) or a fishing spot on water to cast a line. Press \"Find\" next to a material to walk to the nearest place it comes from.")
 	elif _smith_tab == 5:
@@ -4816,6 +4818,15 @@ func _update_online_bars() -> void:
 func _open_mage_fashion() -> void:
 	if Game.job_id != "mage":
 		dialog("แฟชั่นนักเวท", "ชุด Forest Mage ใช้ได้กับอาชีพ Mage และอาชีพขั้นสูงในสายเดียวกัน", ["ปิด"], Callable())
+		return
+	if not Game.owns_mage_fashion():
+		var recipe: Dictionary=Game.FOREST_MAGE_RECIPE
+		var needs := "ต้องคราฟกับ Blacksmith Doran ก่อน (แท็บแฟชั่น)\nวัตถุดิบ:\n"
+		for id in recipe.mats:needs += "%s: %d / %d\n" % [Items.item_name(id), Game.count(id), int(recipe.mats[id])]
+		needs += "ค่าใช้จ่าย: %d / %d Zeny\nคราฟครั้งเดียว ปลดล็อกถาวรสำหรับตัวละครนี้" % [Game.zeny, int(recipe.zeny)]
+		dialog("Forest Mage • ยังไม่ปลดล็อก", needs, ["ไปหาช่างตีอุปกรณ์", "ปิด"], func(i: int) -> void:
+			if i==0:
+				_dialog.panel.hide();_inv.panel.hide();_quest_go({"npc":"Blacksmith Doran"}))
 		return
 	var worn: bool = Game.appearance.get("fashion", "") == "forest_mage"
 	dialog("แฟชั่นนักเวท • Forest Mage", "ชุดนักเวทแห่งพงไพร: หมวกใบไม้ เสื้อคลุมเขียว รองเท้าหนัง และคทาพฤกษา พร้อมภูตบินสองตัว\nเป็นแฟชั่นตกแต่ง ไม่เพิ่มพลังต่อสู้\nสถานะ: " + ("สวมอยู่" if worn else "ยังไม่ได้สวม"), ["สวม Forest Mage", "ถอดแฟชั่น", "ปิด"], func(i: int) -> void:
