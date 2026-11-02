@@ -1,0 +1,110 @@
+[
+  {
+    "id": "red_bandana",
+    "label": "Red Bandana"
+  },
+  {
+    "id": "dragon_mask",
+    "label": "Dusk Dragon Mask"
+  },
+  {
+    "id": "winter_ushanka",
+    "label": "Winter Ushanka"
+  },
+  {
+    "id": "royal_crown",
+    "label": "Jewel Crown"
+  },
+  {
+    "id": "horned_helm",
+    "label": "Horned Helm"
+  },
+  {
+    "id": "blue_bandana",
+    "label": "Blue Bandana"
+  },
+  {
+    "id": "rice_straw_hat",
+    "label": "Rice Straw Hat"
+  },
+  {
+    "id": "straw_boater",
+    "label": "Straw Boater"
+  },
+  {
+    "id": "black_headband",
+    "label": "Black Headband"
+  },
+  {
+    "id": "gold_hardhat",
+    "label": "Golden Hardhat"
+  },
+  {
+    "id": "silver_headphones",
+    "label": "Silver Headphones"
+  },
+  {
+    "id": "black_headphones",
+    "label": "Black Headphones"
+  },
+  {
+    "id": "captain_cap",
+    "label": "Captain Cap"
+  },
+  {
+    "id": "red_beret",
+    "label": "Red Beret"
+  },
+  {
+    "id": "black_top_hat",
+    "label": "Black Top Hat"
+  },
+  {
+    "id": "leather_fedora",
+    "label": "Leather Fedora"
+  },
+  {
+    "id": "sailor_cap",
+    "label": "Sailor Cap"
+  },
+  {
+    "id": "bunny_ears",
+    "label": "Bunny Ears"
+  },
+  {
+    "id": "robot_visor",
+    "label": "Robot Visor"
+  },
+  {
+    "id": "chef_hat",
+    "label": "Chef Hat"
+  },
+  {
+    "id": "indigo_wizard_hat",
+    "label": "Indigo Witch Hat"
+  },
+  {
+    "id": "potion_red",
+    "label": "Healing flask"
+  },
+  {
+    "id": "potion_blue",
+    "label": "Mana flask"
+  },
+  {
+    "id": "potion_green_prop",
+    "label": "Herbal flask"
+  },
+  {
+    "id": "potion_amber_prop",
+    "label": "Amber flask"
+  },
+  {
+    "id": "basic_iron_sword",
+    "label": "Forged basic sword"
+  },
+  {
+    "id": "potion_stall",
+    "label": "Apothecary stall"
+  }
+]
