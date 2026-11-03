@@ -208,6 +208,7 @@ body.touch.game-expanded main>.bar{display:none!important}
     </div>
     <div class="bar">
       <div class="left">
+        <button class="btn ghost" id="play-local" type="button">เล่นเซฟในเครื่อง</button>
         <button class="btn ghost" id="fs" type="button" aria-pressed="false">⛶ เต็มหน้าต่าง</button>
         <button class="btn ghost" id="reload" type="button" hidden>↻ โหลดเกมใหม่</button>
       </div>
@@ -217,7 +218,8 @@ body.touch.game-expanded main>.bar{display:none!important}
 
 
 
-    <section id="fashion" aria-labelledby="fashion-heading">
+    <div style="padding:20px 22px;border:1px solid #7c6945;border-radius:12px;background:#19241e;margin:18px 0"><strong style="color:#f5d38a">บัญชีเกมและเซฟข้ามเครื่อง</strong><p>สมัครด้วยชื่อบัญชีและรหัสผ่าน แล้วเล่นตัวละครต่อจากเครื่องอื่นได้ เซฟเดิมในเครื่องสามารถคัดลอกเข้าบัญชีได้</p><a href="account.html" style="display:inline-block;background:#e9bf62;color:#1a2016;padding:12px 20px;border-radius:8px;font-weight:bold;text-decoration:none">สมัครบัญชีเกม / เข้าสู่ระบบ →</a></div>
+<section id="fashion" aria-labelledby="fashion-heading">
       <h2 id="fashion-heading">แฟชั่นใหม่ในอัลเดนเวล</h2>
       <p class="fashion-intro">คราฟชุดที่ชอบ แล้วออกผจญภัยในแบบของคุณ</p>
       <article class="fashion-hero">
@@ -335,7 +337,7 @@ body.touch.game-expanded main>.bar{display:none!important}
   function start(){
     if(frame) return frame;
     frame=document.createElement('iframe');
-    frame.src='play/index.html?build=20261103-email-callback';
+    frame.src='play/index.html?build=20261103-game-accounts';
     frame.title='Blockrealm Saga';
     frame.setAttribute('allow','fullscreen; autoplay; gamepad');
     frame.setAttribute('allowfullscreen','');
@@ -417,8 +419,10 @@ body.touch.game-expanded main>.bar{display:none!important}
   document.addEventListener('webkitfullscreenchange',function(){
     if(!document.webkitFullscreenElement&&mobile&&!userExited){lastExit=Date.now();expanded(true);fitHeight();}
   });
-  playBtn.addEventListener('click',function(){start();if(mobile)window.blockrealmEnterDisplay();});
+  playBtn.addEventListener('click',function(){location.href='account.html';});
+  document.getElementById('play-local').addEventListener('click',function(){start();if(mobile)window.blockrealmEnterDisplay();});
   fsBtn.addEventListener('click',function(){
+    if(!frame){location.href='account.html';return;}
     start();
     if(document.body.classList.contains('game-expanded'))window.blockrealmRestoreDisplay();
     else window.blockrealmEnterDisplay();

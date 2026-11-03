@@ -1,0 +1,10 @@
+{
+  "passed": 14,
+  "qa_accounts": [
+    "qa_mw0x53y7_a",
+    "qa_mw0x53y7_b"
+  ],
+  "sessions_revoked": true,
+  "production_cross_session_restore": true,
+  "production_account_isolation": true
+}
