@@ -1,0 +1,13 @@
+{
+  ".gdignore": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+  "account-bridge.js": "50edd033a48e165ed8e5eab9513441c6e0f5f783fd94a1d17310ddea3d53a926",
+  "account_test.log": "194dbd3cec823220d81c2942f4947cbff1fe298834e743edb061dfbfa0d2cb1b",
+  "bridge_test.cjs": "007e33f8c6bd6d7772a61576946b17623ff8b27944cd3427fd07bc240674d13a",
+  "bridge_test.log": "ae4f0c1c47677a001c69ce0863550a07817f197dca1f6db324d6d7dbc5148711",
+  "prepare_web.py": "d220e994819367497d1533ad605d4581e644b4a4393add0e7e00ae3e25121d83",
+  "README.md": "577b2ed4f104938eb7aa0dde785de2f9ec909bfb19a7d537ec0af6b553dec830",
+  "source/scripts/account_cloud_test.gd": "2c9438ddc54f1babf676f6a8afbc9322e8864de5b84fd92f4a0eb8cb268e3b19",
+  "source/scripts/game/cloud_account.gd": "657babceddee6d51cb9d28d7ea641fa6210797e07ebbe088f2dc192d300901be",
+  "source/scripts/ui/account_panel.gd": "0e9306077ab50e0bf74b7e9841a1958b6662fefddbd4e0d88aa36da6ab35b00f",
+  "source/scripts/ui/char_create.gd": "ecce568ffbbc673520c97c57dd1c911b55c645726dd68f0615d484b6d47bddb2"
+}

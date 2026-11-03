@@ -1,0 +1,9 @@
+# Email click callback fix
+
+Replaces the copy-link-first web flow with normal email clicks. Supabase Site URL must be exactly https://kanoksinp-cmd.github.io/blockrealm-saga/play/index.html. The OTP request also specifies this redirect_to destination. Old emails with localhost redirects remain old links and must be replaced by a fresh email request.
+
+play/account-bridge.js runs before the engine or other assets. It removes auth fragments immediately, keeps credentials in memory only, and requires a same-browser pending email request no older than 30 minutes. That record stores only the requested email and timestamp, not credentials. The Godot client checks the access token with Supabase /auth/v1/user and requires the confirmed identity to match the browser request before accessing account saves. Recovery callbacks are rejected. Cross-browser opening asks the user to request again in the destination browser. Expired/used links open a recovery message in the game. Manual link/code verification remains available as a fallback and for the native client.
+
+Testing: 34 Godot account-flow checks passed, including invalid bearer rejection, callback identity mismatch rejection, recovery rejection and verified callback hydration. 14 browser-bridge unit checks passed, including fragment clearing, one-use delivery, no token persistence, expiry, missing request, wrong flow and blocked storage. No real user verification link was read or consumed during development. Actual email clicks and two actual devices still require owner verification.
+
+Rebuild: export Web, place prepare_web.py and account-bridge.js together, then run python prepare_web.py <export-directory>. Copy index.html, index.pck and account-bridge.js into play/. This preserves the game pack and bridge content hashes in request URLs so cached older code is not reused. Existing account data, SQL migration and owner-test restriction are unchanged.
