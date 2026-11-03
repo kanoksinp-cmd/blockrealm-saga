@@ -1,0 +1,18 @@
+{
+  ".gdignore": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+  "build_lantern.py": "7724311328e7e1a4f45e460b2665190535c998f95049ea8b94acbf67e1bb903e",
+  "Hanging_Lantern_Post.blend": "4c4191b5d1ea54d7d478b89621cdf6ab517af720b965a208297a481a7f74f548",
+  "lantern_preview.png": "8ac3659c5c9d1795704a66adda64a67da072b5dd7659ee2e6f71b5287f8817ad",
+  "lantern_test.log": "64523e56da2df76862237662c5873ccb44769d9d0cf465604f7e3575fdb35cef",
+  "pack_smoke.log": "83cf0b082206af2aa236c83064fbcfa76be1e00a4aa3558574b2f65965d9481c",
+  "README.md": "42226c70e382df54f81f48f8a98a15e644dd48ebe2bd6988afef6c2824745015",
+  "site_validation.json": "e53e00fac5dfdc41ab6d5301b471aed54c611595f0024e7de1aa845f6ee6dbee",
+  "town_regression.log": "767ccf76e68fab1035f1546689c6d7dbfce57f939d97a103d37a96e731491950",
+  "website_promo.jpg": "a3df82dbd06c2774b3238158034e2f7ff0b739a1fe878cb7385bf1fbbec223c5",
+  "source/export_presets.cfg": "4437f3a67aed9ce658080b5c488a21a86b3f0907b2ebdf3824e1a7e4eb0856b3",
+  "source/scenes/lantern_update_test.tscn": "41ee3401f0650827b5dbef69e134ca3f5462004b7a28c37756c3e94d8912f9c7",
+  "source/scripts/lantern_update_test.gd": "b05d27c68e510617b62f298df0125b2ac666144988f8bee47a022df665bd3369",
+  "source/assets/models/town/hanging_lantern_post.glb": "ef268a6c0dd367567ca9234494286a7029d3ce70d956a1b5f2969eed506aebe3",
+  "source/scripts/world/hanging_lantern_post.gd": "75268716ba26bf45249fe543a89a7b6a42c46fa230b31c4c40e925f08ea23a75",
+  "source/scripts/world/village_builder.gd": "bb970c1e74a28fa4775b1f4d1aff1590b611e96a7945da5f696dc71ccd9d444a"
+}
