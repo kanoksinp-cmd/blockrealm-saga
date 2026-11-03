@@ -1,0 +1,14 @@
+{
+  "rollout": "owner_test",
+  "migration_applied": true,
+  "publishable_key_only": true,
+  "production_anonymous_read_status": 401,
+  "production_anonymous_write_status": 401,
+  "godot_protocol_checks": 30,
+  "postgres_security_checks": 21,
+  "career_regression_checks": 1467,
+  "forest_regression_checks": 40,
+  "real_email_owner_verification": "pending_owner_test",
+  "real_two_device_test": "pending_owner_test",
+  "web_pack_sha256": "7b267f32d40ad6a540f16606e82a2f21d0ea6316c4bafd69d3d0d1a2836fce3c"
+}

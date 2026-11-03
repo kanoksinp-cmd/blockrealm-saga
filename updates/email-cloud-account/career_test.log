@@ -1,0 +1,9 @@
+Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org
+
+CAREER QA: 1467 checks, 0 failures
+ERROR: Rect2i size is negative, this is not supported. Use Rect2i.abs() to get a Rect2i with a positive size.
+   at: merge (./core/math/rect2i.h:111)
+ERROR: Rect2i size is negative, this is not supported. Use Rect2i.abs() to get a Rect2i with a positive size.
+   at: merge (./core/math/rect2i.h:111)
+ERROR: Rect2i size is negative, this is not supported. Use Rect2i.abs() to get a Rect2i with a positive size.
+   at: merge (./core/math/rect2i.h:111)
