@@ -1,6 +1,6 @@
 {
   "_help": "แก้ไฟล์นี้ไฟล์เดียวเพื่ออัปเดตหน้าเว็บ: events = อีเวนต์ (bonus: exp / drop / gather คูณได้ 1-3 ใช้ในเกมจริงช่วง start-end), bosses = บอสที่โปรโมท, items = ไอเทมใหม่, updates = บันทึกอัปเดต (ใหม่สุดไว้บนสุด). วันที่ใช้รูปแบบ 2026-11-12T23:59:00+07:00",
-  "version": "1.6",
+  "version": "1.7",
   "updated": "2026-11-04",
   "events": [
     {
@@ -69,6 +69,12 @@
   ],
   "items": [
     {
+      "id": "hallow_spectres_fashion",
+      "name": "Hallow Spectres • แฟชั่นฮาโลวีน 3 ชุด",
+      "image": "assets/news/hallow-spectres-fashion.png",
+      "how": "คราฟที่โดแรน → แฟชั่น ใส่ได้ทุกอาชีพ พร้อมบวกค่าสถานะขณะสวม: Pumpkin Reaper (STR+3 VIT+2 ATK+12 HP+5%), Bone Oracle (INT+3 DEX+2 SP+10% ฟื้น SP+15%), Hollow Scarecrow (AGI+3 LUK+2 FLEE+8 CRIT+3) ชุดละ 15,000 Zeny พร้อมวัตถุดิบ"
+    },
+    {
       "id": "forest_mage_fashion",
       "name": "Forest Mage • แฟชั่นนักเวทพงไพร",
       "image": "assets/news/forest-mage-fashion.png",
@@ -132,6 +138,17 @@
     }
   ],
   "updates": [
+    {
+      "id": "20261104-hallow-spectres",
+      "date": "2026-11-04",
+      "title": "แฟชั่นฮาโลวีน Hallow Spectres และโหลดเกมเร็วขึ้น",
+      "image": "assets/news/hallow-spectres-fashion.png",
+      "items": [
+        "แฟชั่นใหม่ 3 ชุด: อัศวินฟักทอง นักพยากรณ์กระดูก และหุ่นไล่กากลวง ใส่ได้ทุกอาชีพ พร้อมบวกค่าสถานะขณะสวม",
+        "คราฟครั้งเดียวที่โดแรน แท็บแฟชั่น แล้วสวมจากกระเป๋า I → แฟชั่น",
+        "แก้ปัญหาโหลดเซฟจากบัญชีไม่ได้บนเว็บ และไฟล์เกมเล็กลง 25% ทำให้เข้าเกมเร็วขึ้น"
+      ]
+    },
     {
       "id": "20261104-game-accounts",
       "date": "2026-11-04",
