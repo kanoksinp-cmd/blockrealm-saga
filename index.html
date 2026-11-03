@@ -161,6 +161,29 @@ body.touch.game-expanded main{padding:0}
 body.touch.game-expanded main>.bar{display:none!important}
 @media (pointer:coarse) and (orientation:portrait){body.rotate-hint .stage::after{content:'หมุนโทรศัพท์เป็นแนวนอนเพื่อเล่นเกม';position:absolute;top:8px;left:10%;right:10%;padding:8px;text-align:center;background:#21190fe8;color:#ffe5a2;z-index:5;pointer-events:none}}
 
+/* Halloween 2026: Hallow Spectres */
+.hw-ribbon{display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap;margin:18px 0 0;padding:12px 16px;border:1px solid #a4561c;border-radius:12px;background:linear-gradient(100deg,#2b1036,#3a1a12 60%,#4a2a0c);color:#ffe2b8;text-decoration:none;box-shadow:0 10px 24px #0005}
+.hw-ribbon strong{color:#ffb347;font-size:16px}
+.hw-ribbon span{font-size:14px;color:#f1d3b5}
+.hw-ribbon em{font-style:normal;background:#ff8a1e;color:#2a1206;font-weight:700;border-radius:999px;padding:5px 12px;font-size:14px;white-space:nowrap}
+.hw-ribbon:hover em,.hw-ribbon:focus-visible em{background:#ffb347}
+.hw-hero{position:relative;overflow:hidden;border:1px solid #8a4a1f;border-radius:14px;background:radial-gradient(120% 90% at 50% 0,#3a1648 0,#1b0f22 55%,#120a12 100%);box-shadow:0 16px 34px #0006;margin-bottom:22px}
+.hw-art img{display:block;width:100%;height:auto}
+.hw-copy{padding:22px 24px 24px}
+.hw-badge{display:inline-block;background:#ff8a1e;color:#2a1206;font-weight:700;border-radius:999px;font-size:12px;padding:4px 11px;letter-spacing:.04em}
+.hw-copy h3{margin:10px 0 2px;font:700 34px/1.15 "Prompt",sans-serif;color:#ffb347;letter-spacing:.04em;text-shadow:0 2px 0 #4a1a06}
+.hw-copy .subtitle{margin:4px 0 14px;color:#f0d9ff;font-size:17px}
+.hw-sets{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px;margin:0 0 16px}
+.hw-set{background:#0f0a14cc;border:1px solid #5a3a6a;border-radius:10px;padding:13px}
+.hw-set h4{margin:0 0 3px;font-size:17px;color:#ffd08a}
+.hw-set .th{display:block;font-size:13px;color:#d7c3e6;margin-bottom:8px}
+.hw-set p{margin:0 0 8px;font-size:13px;color:#d8cdbf;line-height:1.55}
+.hw-stats{display:flex;flex-wrap:wrap;gap:4px;margin:0 0 8px}
+.hw-stats span{font-size:12px;background:#3d1d0c;border:1px solid #a4561c;color:#ffd7a8;padding:2px 7px;border-radius:5px}
+.hw-set small{display:block;font-size:12px;color:#b9a8c6}
+.hw-copy .btn{font-size:15px;padding:12px 18px;background:#ff8a1e;color:#2a1206}
+.hw-copy .note{margin-top:8px}
+@media(max-width:650px){.hw-sets{grid-template-columns:1fr}.hw-copy{padding:18px}.hw-copy h3{font-size:28px}}
 /* New fashion collection */
 #fashion{margin-top:30px;scroll-margin-top:20px}
 #fashion h2{font:700 30px/1.3 "Prompt",sans-serif;letter-spacing:0;text-shadow:none;margin:0 0 6px;color:#d9eec3}
@@ -218,10 +241,50 @@ body.touch.game-expanded main>.bar{display:none!important}
 
 
 
+    <a class="hw-ribbon" href="#fashion"><span><strong>ใหม่! แฟชั่น Halloween</strong> · 3 ชุดผีฮาโลวีน ใส่ได้ทุกอาชีพ พร้อมบวกค่าสถานะ</span><em>ดูชุดทั้งหมด →</em></a>
     <div style="padding:20px 22px;border:1px solid #7c6945;border-radius:12px;background:#19241e;margin:18px 0"><strong style="color:#f5d38a">บัญชีเกมและเซฟข้ามเครื่อง</strong><p>สมัครด้วยชื่อบัญชีและรหัสผ่าน แล้วเล่นตัวละครต่อจากเครื่องอื่นได้ เซฟเดิมในเครื่องสามารถคัดลอกเข้าบัญชีได้</p><a href="account.html" style="display:inline-block;background:#e9bf62;color:#1a2016;padding:12px 20px;border-radius:8px;font-weight:bold;text-decoration:none">สมัครบัญชีเกม / เข้าสู่ระบบ →</a></div>
 <section id="fashion" aria-labelledby="fashion-heading">
-      <h2 id="fashion-heading">แฟชั่นใหม่ในอัลเดนเวล</h2>
-      <p class="fashion-intro">คราฟชุดที่ชอบ แล้วออกผจญภัยในแบบของคุณ</p>
+      <h2 id="fashion-heading">แฟชั่น Halloween มาแล้ว!</h2>
+      <p class="fashion-intro">ต้อนรับฮาโลวีนด้วยชุดใหม่ 3 แบบ ใส่ได้ทุกอาชีพ พร้อมบวกค่าสถานะ</p>
+      <article class="hw-hero" aria-labelledby="hw-title">
+        <div class="hw-art">
+          <picture>
+            <source media="(prefers-reduced-motion: reduce)" srcset="assets/news/hallow-spectres-fashion-static.png">
+            <img src="assets/news/hallow-spectres-fashion.gif" width="720" height="450" loading="lazy" alt="แฟชั่น Halloween 3 ชุด: อัศวินหัวฟักทองในเกราะดำ นักพยากรณ์หน้ากากกะโหลกเขาแกะ และหุ่นไล่กาหัวกระสอบสวมหมวกปีกกว้าง ยืนใต้พระจันทร์สีส้ม">
+          </picture>
+        </div>
+        <div class="hw-copy">
+          <span class="hw-badge">HALLOWEEN 2026 · ใส่ได้ทุกอาชีพ</span>
+          <h3 id="hw-title">HALLOW SPECTRES</h3>
+          <p class="subtitle">ชุดแฟชั่นวิญญาณฮาโลวีน พร้อมพลังพิเศษขณะสวม</p>
+          <div class="hw-sets">
+            <div class="hw-set">
+              <h4>Pumpkin Reaper</h4><span class="th">อัศวินฟักทอง</span>
+              <p>หัวฟักทองแกะสลักที่มีแสงเทียนเรืองอยู่ข้างใน เกราะเหล็กดำขลิบถ่านแดง และผ้าคลุมสีไวน์ขาดรุ่ย</p>
+              <div class="hw-stats" aria-label="ค่าสถานะขณะสวม"><span>STR +3</span><span>VIT +2</span><span>ATK +12</span><span>HP สูงสุด +5%</span></div>
+              <small>ถ่านวิญญาณ ×10 · ผ้าเถ้าถ่าน ×8 · เขาอิมพ์ ×4 · หนังหมูป่า ×6 · 15,000 Zeny</small>
+            </div>
+            <div class="hw-set">
+              <h4>Bone Oracle</h4><span class="th">นักพยากรณ์กระดูก</span>
+              <p>หน้ากากกะโหลกเขาแกะม้วน แสงวิญญาณสีฟ้าในเบ้าตา และเสื้อคลุมน้ำเงินราตรีลายซี่โครง</p>
+              <div class="hw-stats" aria-label="ค่าสถานะขณะสวม"><span>INT +3</span><span>DEX +2</span><span>SP สูงสุด +10%</span><span>ฟื้น SP +15%</span></div>
+              <small>เศษเงามืด ×10 · ปีกค้างคาวคริสตัล ×8 · ผ้าเถ้าถ่าน ×6 · ถ่านวิญญาณ ×4 · 15,000 Zeny</small>
+            </div>
+            <div class="hw-set">
+              <h4>Hollow Scarecrow</h4><span class="th">หุ่นไล่กากลวง</span>
+              <p>หัวกระสอบเย็บยิ้ม ตากระดุมเรืองแสงเขียว หมวกปีกกว้างปลายงอ เสื้อโค้ทปะผ้า และฟางโผล่ปลายแขน</p>
+              <div class="hw-stats" aria-label="ค่าสถานะขณะสวม"><span>AGI +3</span><span>LUK +2</span><span>FLEE +8</span><span>CRIT +3</span></div>
+              <small>เถาวัลย์มีชีวิต ×10 · ขนแกะ ×10 · ผงสปอร์ ×6 · หนังหมูป่า ×4 · 15,000 Zeny</small>
+            </div>
+          </div>
+          <div class="fashion-recipe">
+            <strong>คราฟที่ช่างตีเหล็กโดแรน → แฟชั่น</strong>
+            <small>คราฟครั้งเดียว ปลดล็อกถาวรเฉพาะตัวละครนั้น · ค่าสถานะบวกเฉพาะตอนสวม · อาวุธ โล่ และปีกยังแสดงตามเดิม</small>
+          </div>
+          <button class="btn" type="button" data-play-game>เข้าเกมไปคราฟชุด Halloween</button>
+          <p class="note">คราฟแล้วเปิดกระเป๋า I → แฟชั่น → เลือกชุดที่ชอบ</p>
+        </div>
+      </article>
       <article class="fashion-hero">
         <div class="fashion-art">
           <picture>
@@ -248,7 +311,7 @@ body.touch.game-expanded main>.bar{display:none!important}
             <small>คราฟครั้งเดียว ปลดล็อกถาวรเฉพาะตัวละครนั้น<br>สวมได้กับ Mage และอาชีพขั้นสูงในสายเดียวกัน</small>
           </div>
           <button class="btn" type="button" data-play-game>เข้าเกมไปคราฟชุด</button>
-          <p class="note">คราฟแล้วเปิดกระเป๋า I → แฟชั่นนักเวท → สวม Forest Mage</p>
+          <p class="note">คราฟแล้วเปิดกระเป๋า I → แฟชั่น → สวม Forest Mage</p>
         </div>
       </article>
       <article class="fashion-hats">
