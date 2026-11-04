@@ -220,6 +220,20 @@ body.touch.game-expanded main>.bar{display:none!important}
 .eternal-recipe{color:#c9dfef;font-size:14px}
 .eternal-copy .btn{margin-top:7px}
 @media(max-width:720px){.eternal{grid-template-columns:1fr}}
+
+.relic-feature{display:grid;grid-template-columns:minmax(220px,.78fr) minmax(0,1.45fr);gap:clamp(14px,2.8vw,30px);align-items:center;margin:0 0 22px;padding:clamp(16px,3.2vw,34px);border:1px solid #52748e;border-radius:18px;background:radial-gradient(ellipse at 15% 5%,#27384d,#14212e 70%);color:#edf2fc;scroll-margin-top:18px}
+.relic-copy h2{color:#ffe1a5;font:700 clamp(31px,4vw,52px)/.98 "Prompt",sans-serif;margin:8px 0 14px;letter-spacing:-.045em}
+.relic-copy p{color:#d6e4f3;line-height:1.55;margin:10px 0}
+.relic-label{color:#a6e6ed;font-weight:700;font-size:12px;letter-spacing:.035em}
+.relic-copy .btn{margin:10px 0 4px}
+.relic-art{display:block;color:#b8dae9;text-align:center;font-size:13px;border-radius:12px}
+.relic-art img{display:block;width:100%;height:auto;border-radius:12px}
+.relic-art span{display:block;margin:6px 0 0}
+.relic-feature details{grid-column:1/-1;border-top:1px solid #567283;padding-top:10px;color:#d6e4f3}
+.relic-feature summary{cursor:pointer;color:#f5d7a3;font-weight:700}
+.relic-feature ol{columns:2;column-gap:30px;padding-inline-start:24px;margin-bottom:0}
+.relic-feature li{break-inside:avoid;margin-bottom:7px}
+@media(max-width:680px){.relic-feature{grid-template-columns:1fr}.relic-feature ol{columns:1}}
 </style>
 </head>
 <body>
@@ -230,6 +244,36 @@ body.touch.game-expanded main>.bar{display:none!important}
   </header>
 
   <main>
+    <article class="relic-feature" id="relic-vanguard" aria-labelledby="relic-title">
+      <div class="relic-copy">
+        <span class="relic-label">แฟชั่นใหม่ 12 เซ็ต · ใส่ได้ทุกอาชีพ</span>
+        <h2 id="relic-title">Relic Vanguard</h2>
+        <p>เลือกเกราะพร้อมอาวุธเข้าชุด ตั้งแต่ดาบและโล่ชาดไปจนถึงธนูเหยี่ยวฟ้าทอง ภาพทั้ง 12 ชุดเรนเดอร์จากเกม</p>
+        <p><strong>คราฟที่โดแรน → แฟชั่น</strong><br>คราฟครั้งเดียวได้ทั้งชุด · 12,000 Zeny ต่อเซ็ต</p>
+        <button class="btn" type="button" data-play-game>เข้าเกมไปคราฟชุด</button>
+      </div>
+      <a class="relic-art" href="assets/news/relic-vanguard.webp">
+        <img src="assets/news/relic-vanguard.webp" width="1144" height="780" fetchpriority="high" alt="Relic Vanguard ทั้ง 12 เซ็ตพร้อมอาวุธ เรียงตามแบบอ้างอิง">
+        <span>เปิดภาพทั้ง 12 เซ็ตขนาดเต็ม ↗</span>
+      </a>
+      <details>
+        <summary>รายชื่อชุดและอาวุธครบทั้ง 12 เซ็ต</summary>
+        <ol>
+          <li><strong>Crimson Bastion</strong> · ดาบหยักและโล่ชาด</li>
+          <li><strong>Iron Warden</strong> · ดาบเหล็กและโล่ไม้กรุเหล็ก</li>
+          <li><strong>Cinder Ranger</strong> · ธนูและกระบอกลูกธนู</li>
+          <li><strong>Gilded Wayfarer</strong> · ดาบเรียวและหมวกหัวเข็มขัด</li>
+          <li><strong>Verdigris Arcanist</strong> · คทาผลึกเขียวและปลายแฉก</li>
+          <li><strong>Azure Bulwark</strong> · ค้อนฟ้าและโล่ไม้กรุฟ้า</li>
+          <li><strong>Solar Regalia</strong> · คทาตราตะวันและมงกุฎแฉก</li>
+          <li><strong>Amethyst Oracle</strong> · ไม้เท้าผลึกม่วงและผลึกล้อมตัว</li>
+          <li><strong>Infernal Executioner</strong> · ขวานใบโค้งและหมวกเขาไฟ</li>
+          <li><strong>Rosewing Paladin</strong> · ดาบผลึกชมพูและปีกกุหลาบ</li>
+          <li><strong>Evergreen Giftkeeper</strong> · คทาสนและกล่องของขวัญ</li>
+          <li><strong>Celestial Falcon</strong> · ธนูทองฟ้าและปีกแผ่</li>
+        </ol>
+      </details>
+    </article>
     <div class="stage" id="stage">
       <div class="cover" id="cover">
         <button class="btn big" id="play" type="button" aria-label="เริ่มเล่น Blockrealm Saga">
@@ -420,7 +464,7 @@ body.touch.game-expanded main>.bar{display:none!important}
   function start(){
     if(frame) return frame;
     frame=document.createElement('iframe');
-    frame.src='play/index.html?build=20261104-ro-damage';
+    frame.src='play/index.html?build=20261104-relic-vanguard';
     frame.title='Blockrealm Saga';
     frame.setAttribute('allow','fullscreen; autoplay; gamepad');
     frame.setAttribute('allowfullscreen','');
