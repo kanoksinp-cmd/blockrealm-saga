@@ -1,6 +1,6 @@
 {
   "_help": "แก้ไฟล์นี้ไฟล์เดียวเพื่ออัปเดตหน้าเว็บ: events = อีเวนต์ (bonus: exp / drop / gather คูณได้ 1-3 ใช้ในเกมจริงช่วง start-end), bosses = บอสที่โปรโมท, items = ไอเทมใหม่, updates = บันทึกอัปเดต (ใหม่สุดไว้บนสุด). วันที่ใช้รูปแบบ 2026-11-12T23:59:00+07:00",
-  "version": "1.9",
+  "version": "1.10",
   "updated": "2026-11-04",
   "events": [
     {
@@ -68,6 +68,12 @@
     }
   ],
   "items": [
+    {
+      "id": "forge_arsenal",
+      "name": "Forge Arsenal · อาวุธระดับสูง 12 ชิ้น",
+      "image": "assets/news/forge-arsenal.webp",
+      "how": "คราฟที่โดแรน → อาวุธ ใช้ Base Lv 60–80 และอาชีพที่ตรงประเภทอาวุธ"
+    },
     {
       "id": "hallow_spectres_fashion",
       "name": "Hallow Spectres • แฟชั่นฮาโลวีน 3 ชุด",
@@ -138,6 +144,16 @@
     }
   ],
   "updates": [
+    {
+      "id": "20261104-forge-arsenal",
+      "date": "2026-11-04",
+      "title": "Forge Arsenal · อาวุธระดับสูง 12 ชิ้น",
+      "image": "assets/news/forge-arsenal.webp",
+      "items": [
+        "เพิ่มค้อน กระบอง ขวาน คทา มีด คาตาร์ ดาบ และดาบใหญ่พร้อมโมเดลประจำชิ้น",
+        "คราฟที่โดแรนและสวมได้เมื่อถึง Base Lv ของอาวุธ"
+      ]
+    },
     {
       "id": "20261104-relic-vanguard",
       "date": "2026-11-04",

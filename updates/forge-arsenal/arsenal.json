@@ -1,0 +1,14 @@
+[
+ ["sunseal_maul","Sunseal Maul","ค้อนตราสุริยะ","mace","solar",60,148,56000,"acolyte","be9b3e","ffe38d","4edffc",{"VIT":4,"HIT":8},{"gold_ore":12,"mithril_ore":5,"spirit_ember":8}],
+ ["frostskull_mace","Frostskull Mace","กระบองกะโหลกน้ำแข็ง","mace","frost",66,156,68000,"acolyte","3e83ae","c1f7ff","70e7ff",{"VIT":5,"CRIT":4},{"frost_core":12,"ice_crystal":12,"wyrm_scale":1}],
+ ["stormgear_hammer","Stormgear Hammer","ค้อนเฟืองสายฟ้า","axe","gear",72,174,84000,"merchant","ad7134","ffca63","9cfae5",{"STR":6,"HIT":10},{"mithril_ore":14,"gold_ore":8,"obsidian_shard":10}],
+ ["vineforged_maul","Vineforged Maul","ค้อนโกเลมเถาวัลย์","mace","vine",74,166,88000,"acolyte","5a7852","aac58e","a9f366",{"VIT":6,"HPREGEN":12},{"rune_stone":16,"ancient_bark":12,"treant_heart":1}],
+ ["venomwyrm_staff","Venomwyrm Staff","คทามังกรพิษ","staff","dragon",68,149,74000,"mage","a95733","ffc05f","83ed56",{"INT":6,"SPREGEN":10},{"jade_scale":14,"shadow_shard":10,"emerald_gem":2}],
+ ["amethyst_spire","Amethyst Spire","คทายอดผลึกอเมทิสต์","staff","spire",80,166,110000,"mage","743492","e28fff","ffd1ff",{"INT":8,"MAXSP_PCT":10},{"shadow_shard":20,"mithril_ore":12,"drake_heart":1}],
+ ["lionheart_blade","Lionheart Blade","ดาบราชสีห์","sword","lion",70,163,80000,"swordsman","bc8139","ffe7a1","5b83ff",{"STR":5,"CRIT":5},{"gold_ore":14,"sapphire_gem":3,"rune_stone":10}],
+ ["dreadfang_katar","Dreadfang Katar","คาตาร์เขี้ยวอเวจี","katar","skull",76,159,94000,"thief","545674","c7c9e2","e174ee",{"AGI":6,"CRIT":8},{"shadow_shard":16,"obsidian_shard":12,"ruby_gem":2}],
+ ["violetshard_dagger","Violetshard Dagger","มีดผลึกม่วง","dagger","violet",64,137,63000,"thief","922bb8","ef91ff","ffcaee",{"DEX":5,"CRIT":5},{"shadow_shard":10,"silver_ore":12,"golem_crystal":6}],
+ ["gravewarden_greatsword","Gravewarden Greatsword","ดาบใหญ่ศิลาสุสาน","greatsword","grave",78,188,100000,"swordsman","62777a","bfcec7","80ed9b",{"STR":7,"VIT":5},{"rune_stone":18,"obsidian_shard":14,"ancient_bark":12}],
+ ["goldcrescent_dagger","Goldcrescent Dagger","มีดเสี้ยวจันทร์ทอง","dagger","crescent",72,150,84000,"archer","bc8531","ffea7a","c38aff",{"AGI":6,"HIT":10},{"gold_ore":14,"djinn_sand":12,"emerald_gem":2}],
+ ["jade_dragon_greatsword","Jade Dragon Greatsword","ดาบใหญ่มังกรหยก","greatsword","jade",80,194,112000,"swordsman","258747","a5ff65","eac36c",{"STR":8,"CRIT":6},{"jade_scale":20,"emerald_gem":4,"drake_heart":1}]
+]

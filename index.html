@@ -244,6 +244,19 @@ body.touch.game-expanded main>.bar{display:none!important}
   </header>
 
   <main>
+    <article class="eternal" id="forge-arsenal" style="margin-top:0;margin-bottom:20px" aria-labelledby="forge-title">
+      <a class="relic-art" href="assets/news/forge-arsenal.webp">
+        <img src="assets/news/forge-arsenal.webp" width="1128" height="758" fetchpriority="high" alt="ภาพจากเกม อาวุธระดับสูงทั้ง 12 ชิ้นพร้อมค่า ATK และเลเวลที่ต้องการ">
+        <span>เปิดภาพอาวุธขนาดเต็ม ↗</span>
+      </a>
+      <div class="eternal-copy">
+        <span class="eternal-tag">อัปเดตใหม่ · อาวุธ Base Lv 60–80</span>
+        <h2 id="forge-title">Forge Arsenal</h2>
+        <p>อาวุธระดับสูง 12 ชิ้น ตั้งแต่ค้อนตราสุริยะไปจนถึงดาบใหญ่มังกรหยก ค่า ATK พื้นฐาน 137–194 พร้อมโบนัสตามอาวุธ</p>
+        <p class="eternal-recipe"><strong>คราฟที่โดแรน → อาวุธ</strong><br>สวมใส่ตาม Base Lv และประเภทอาวุธที่อาชีพใช้ได้</p>
+        <button class="btn" type="button" data-play-game>เข้าเกมไปคราฟอาวุธ</button>
+      </div>
+    </article>
     <article class="relic-feature" id="relic-vanguard" aria-labelledby="relic-title">
       <div class="relic-copy">
         <span class="relic-label">แฟชั่นใหม่ 12 เซ็ต · ใส่ได้ทุกอาชีพ</span>
@@ -464,7 +477,7 @@ body.touch.game-expanded main>.bar{display:none!important}
   function start(){
     if(frame) return frame;
     frame=document.createElement('iframe');
-    frame.src='play/index.html?build=20261104-relic-vanguard';
+    frame.src='play/index.html?build=20261104-forge-arsenal';
     frame.title='Blockrealm Saga';
     frame.setAttribute('allow','fullscreen; autoplay; gamepad');
     frame.setAttribute('allowfullscreen','');
