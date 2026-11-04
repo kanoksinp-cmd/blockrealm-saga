@@ -210,6 +210,16 @@ body.touch.game-expanded main>.bar{display:none!important}
 .fashion-hats a{font-size:14px;text-underline-offset:3px}
 @media(max-width:650px){.fashion-hero,.fashion-hats{grid-template-columns:1fr}.fashion-art picture{max-width:360px}.fashion-copy{padding:19px}.fashion-copy h3{font-size:27px}.fashion-hats{padding:14px;gap:14px}#fashion h2{font-size:26px}}
 
+
+.eternal{display:grid;grid-template-columns:minmax(0,1.3fr) minmax(0,1fr);align-items:center;margin:18px 0 0;border:1px solid #629d9b;border-radius:14px;overflow:hidden;background:#101f30;color:#e2f3f5;scroll-margin-top:20px}
+.eternal img{width:100%;height:auto;display:block}
+.eternal-copy{padding:clamp(18px,3vw,32px)}
+.eternal-copy h2{margin:7px 0 8px;color:#ffe38c;font-size:clamp(27px,4vw,38px);line-height:1.1}
+.eternal-copy p{margin:9px 0;line-height:1.65}
+.eternal-tag{color:#9bf2eb;font-size:12px;font-weight:700;letter-spacing:.06em}
+.eternal-recipe{color:#c9dfef;font-size:14px}
+.eternal-copy .btn{margin-top:7px}
+@media(max-width:720px){.eternal{grid-template-columns:1fr}}
 </style>
 </head>
 <body>
@@ -241,6 +251,16 @@ body.touch.game-expanded main>.bar{display:none!important}
 
 
 
+    <article class="eternal" id="eternal-armor" aria-labelledby="eternal-title">
+      <img src="assets/news/eternal-armor.webp" width="1000" height="620" alt="แฟชั่น Eternal Armor จากในเกม มุมหน้าและหลัง เห็นเกราะทอง หมวกคริสตัลฟ้า และปีกขอบทอง">
+      <div class="eternal-copy">
+        <span class="eternal-tag">แฟชั่นใหม่ · ทุกอาชีพ</span>
+        <h2 id="eternal-title">Eternal Armor</h2>
+        <p>เกราะนิรันดร์สีทอง ประดับมงกุฎคริสตัลฟ้าและปีกทรงเหลี่ยมขอบทอง</p>
+        <p class="eternal-recipe"><strong>คราฟที่โดแรน → แฟชั่น</strong><br>Gold Ore ×8 · Mithril Ore ×4 · Sapphire ×2 · 15,000 Zeny</p>
+        <button class="btn" type="button" data-play-game>เข้าเกมไปคราฟชุด</button>
+      </div>
+    </article>
     <a class="hw-ribbon" href="#fashion"><span><strong>ใหม่! แฟชั่น Halloween</strong> · 3 ชุดผีฮาโลวีน ใส่ได้ทุกอาชีพ พร้อมบวกค่าสถานะ</span><em>ดูชุดทั้งหมด →</em></a>
     <div style="padding:20px 22px;border:1px solid #7c6945;border-radius:12px;background:#19241e;margin:18px 0"><strong style="color:#f5d38a">บัญชีเกมและเซฟข้ามเครื่อง</strong><p>สมัครด้วยชื่อบัญชีและรหัสผ่าน แล้วเล่นตัวละครต่อจากเครื่องอื่นได้ เซฟเดิมในเครื่องสามารถคัดลอกเข้าบัญชีได้</p><a href="account.html" style="display:inline-block;background:#e9bf62;color:#1a2016;padding:12px 20px;border-radius:8px;font-weight:bold;text-decoration:none">สมัครบัญชีเกม / เข้าสู่ระบบ →</a></div>
 <section id="fashion" aria-labelledby="fashion-heading">
@@ -400,7 +420,7 @@ body.touch.game-expanded main>.bar{display:none!important}
   function start(){
     if(frame) return frame;
     frame=document.createElement('iframe');
-    frame.src='play/index.html?build=20261103-game-accounts';
+    frame.src='play/index.html?build=20261104-eternal-armor';
     frame.title='Blockrealm Saga';
     frame.setAttribute('allow','fullscreen; autoplay; gamepad');
     frame.setAttribute('allowfullscreen','');
