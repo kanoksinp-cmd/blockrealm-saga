@@ -13,7 +13,7 @@
   window.BlockrealmGameAccountBridge=Object.freeze({take(){const value=grant;grant=null;return value?JSON.stringify(value):'';},update:updateSession});
   window.blockrealmReloadGame=()=>{
     if(!gameFrame)return;grant=currentSession?{...currentSession}:null;
-    gameFrame.src='about:blank';setTimeout(()=>{gameFrame.src='play/index.html?build=20261104-forge-arsenal'},50);
+    gameFrame.src='about:blank';setTimeout(()=>{gameFrame.src='play/index.html?build=20261104-open-plaza'},50);
   };
   window.blockrealmEnterDisplay=()=>{if(gameFrame&&gameFrame.requestFullscreen)gameFrame.requestFullscreen().catch(()=>{});};
   window.blockrealmRestoreDisplay=()=>{if(document.fullscreenElement&&document.exitFullscreen)document.exitFullscreen().catch(()=>{});};
@@ -43,7 +43,7 @@
       document.querySelector('#account-name').textContent='บัญชี: '+data.user.username;
       document.querySelector('#account-card').hidden=true;document.querySelector('#play-area').hidden=false;
       const frame=document.createElement('iframe');gameFrame=frame;frame.title='Blockrealm Saga — เกมของบัญชี '+data.user.username;
-      frame.allow='autoplay; fullscreen';frame.src='play/index.html?build=20261104-forge-arsenal';document.querySelector('#game-host').appendChild(frame);
+      frame.allow='autoplay; fullscreen';frame.src='play/index.html?build=20261104-open-plaza';document.querySelector('#game-host').appendChild(frame);
     }catch(_){status.textContent='เชื่อมต่อเซิร์ฟเวอร์ไม่ได้ กรุณาลองใหม่';}
     finally{lock(false);}
   });
