@@ -907,5 +907,3 @@ func _update_fling(delta: float) -> void:
 	_scroll_by(_fling_sc, _fling_v * delta)
 	_fling_pos = _sc_pos
 	_fling_v *= exp(-4.5 * delta)
-
-

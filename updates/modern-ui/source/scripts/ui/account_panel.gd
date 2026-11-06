@@ -88,4 +88,3 @@ static func open(owner: Node):
 	panel.size_flags_horizontal = Control.SIZE_EXPAND_FILL; scroll.add_child(panel)
 	owner.add_child(dialog); var viewport_size = owner.get_viewport().get_visible_rect().size; dialog.popup_centered(Vector2i(mini(560, int(viewport_size.x) - 24), mini(480, int(viewport_size.y) - 24)))
 	dialog.confirmed.connect(dialog.queue_free); dialog.canceled.connect(dialog.queue_free)
-

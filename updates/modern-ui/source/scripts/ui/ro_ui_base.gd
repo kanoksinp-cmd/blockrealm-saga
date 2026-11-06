@@ -5255,4 +5255,3 @@ func _update_quest_auto(delta: float) -> void:
 			return
 	# nothing left to follow
 	_qauto_btn.button_pressed = false
-

@@ -133,4 +133,3 @@ func _fail() -> void:
 		current.set("_entering_game", false)
 		current.process_mode = Node.PROCESS_MODE_INHERIT
 	queue_free()
-

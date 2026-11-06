@@ -1309,4 +1309,3 @@ func _enter_game() -> void:
 	get_tree().root.add_child(overlay)
 	process_mode = Node.PROCESS_MODE_DISABLED
 	overlay.start(MAIN_SCENE)
-

@@ -140,4 +140,3 @@ func _make_portrait() -> void:
 	camera.position = center + Vector3(0.3, 0.2, 1).normalized() * diameter * 2
 	camera.look_at(center)
 	portrait.render_target_update_mode = SubViewport.UPDATE_ONCE
-
