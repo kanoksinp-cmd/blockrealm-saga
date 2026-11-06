@@ -40,6 +40,7 @@ var _toast_box: VBoxContainer
 var _toast_items: Array = []
 var _last_toast := ""
 var _last_toast_at := 0
+var _portrait_key := ""
 var _modal_busy := false
 
 func _adaptive_row() -> GridContainer:
@@ -455,6 +456,13 @@ func _refresh_equipment() -> void:
 func _refresh_status() -> void:
 	if _modern_ready and not _status.panel.visible: return
 	super._refresh_status()
+
+func _refresh() -> void:
+	super._refresh()
+	var key := str(Game.appearance) + str(Game.equip) + Game.job + Game.worn_fashion()
+	if key != _portrait_key and is_instance_valid(_portrait_vp):
+		_portrait_key = key
+		_portrait_vp.render_target_update_mode = SubViewport.UPDATE_ONCE
 
 func _open_mage_fashion(_page := 0) -> void:
 	_character_tabs.current_tab = 2
