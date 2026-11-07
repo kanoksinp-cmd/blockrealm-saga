@@ -216,3 +216,6 @@ func _refresh_equipment() -> void:
 	super._refresh_equipment()
 	if is_instance_valid(_equip_vp):
 		_equip_vp.render_target_update_mode = SubViewport.UPDATE_ONCE if _inv.panel.visible else SubViewport.UPDATE_DISABLED
+
+func _is_touch() -> bool:
+	return true

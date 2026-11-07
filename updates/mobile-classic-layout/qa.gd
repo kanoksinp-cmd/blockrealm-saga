@@ -47,6 +47,14 @@ func check() -> void:
 	assert(ui._inv.panel.visible and hud._ui_blocked)
 	assert(hud._joy_idx==-1 and hud._skill_btns[0]._down==-1)
 	assert(ui._inv.panel.scale==Vector2.ONE)
+	assert(ui._is_touch())
+	var item_click := InputEventMouseButton.new()
+	item_click.button_index=MOUSE_BUTTON_LEFT
+	item_click.pressed=true
+	ui._inv_grid.get_child(0).gui_input.emit(item_click)
+	assert(is_instance_valid(ui._menu_layer), "single tap should open item actions")
+	ui._close_item_menu()
+
 	ui._inv.panel.hide()
 	await frames()
 	assert(not hud._ui_blocked)

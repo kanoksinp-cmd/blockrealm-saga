@@ -5,7 +5,7 @@
   const form=document.querySelector('#account-form'),name=document.querySelector('#username'),password=document.querySelector('#password'),confirmation=document.querySelector('#confirmation');
   const status=document.querySelector('#status'),submit=document.querySelector('#submit'),toggle=document.querySelector('#switch');
   let register=false,busy=false,grant=null,currentSession=null,gameFrame=null;
-  const GAME_URL='play/index.html?build=178ed127c5820cc7';
+  const GAME_URL='play/index.html?build=947d3c58cb4738d0';
   const root=document.documentElement,area=document.querySelector('#play-area');
   const $=sel=>document.querySelector(sel);
   const tools=$('#play-tools');
