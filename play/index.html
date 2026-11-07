@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="th">
 	<head>
 <script src="account-bridge.js?build=f31599095d6d8f21"></script>
 		<meta charset="utf-8">
@@ -91,6 +91,7 @@ body {
 	z-index: 1;
 }
 		</style>
+<link rel="stylesheet" href="loading-screen.css?v=46f2ee0bec39ac73">
 		<link id="-gd-engine-icon" rel="icon" type="image/png" href="index.icon.png?v=c278be444f6708b9" />
 <link rel="apple-touch-icon" href="index.apple-touch-icon.png?v=c278be444f6708b9"/>
 
@@ -105,8 +106,9 @@ body {
 		</noscript>
 
 		<div id="status">
-			<img id="status-splash" class="show-image--true fullsize--true use-filter--true" src="index.png" alt="">
-			<progress id="status-progress"></progress>
+            <img id="status-splash" src="icon-512.png" alt="" width="128" height="128">
+            <div class="loading-brand"><p class="loading-eyebrow">A BLOCK VOXEL FANTASY RPG</p><h1>BLOCKREALM<span>SAGA</span></h1><p class="loading-copy">โลกใบใหม่ กำลังรอการผจญภัยของคุณ</p></div>
+            <div class="loading-foot"><div class="loading-meta"><span id="loading-stage">กำลังดาวน์โหลดเกม</span><output id="loading-percent" aria-live="off">กำลังเชื่อมต่อ</output></div><progress id="status-progress" aria-label="ความคืบหน้าการโหลดเกม"></progress><p class="loading-tip">ครั้งแรกอาจใช้เวลาสักครู่ • โปรดเปิดหน้านี้ไว้จนโหลดเสร็จ</p></div>
 			<div id="status-notice"></div>
 		</div>
 
@@ -114,7 +116,7 @@ body {
 		<script src="audio-unlock.js?build=23a21c26426d5574"></script>
 		<script src="index.js?audio=84f5acee1ba9362f"></script>
 		<script>
-const GODOT_CONFIG = {"args":[],"canvasResizePolicy":2,"emscriptenPoolSize":8,"ensureCrossOriginIsolationHeaders":true,"executable":"index","experimentalVK":true,"fileSizes":{"index.wasm":39514754,"index.pck":17605468,"index.pck?build=23a21c26426d5574":17605468},"focusCanvas":true,"gdextensionLibs":[],"godotPoolSize":4,"mainPack":"index.pck?build=23a21c26426d5574"};
+const GODOT_CONFIG = {"args":[],"canvasResizePolicy":2,"emscriptenPoolSize":8,"ensureCrossOriginIsolationHeaders":true,"executable":"index","experimentalVK":true,"fileSizes":{"index.wasm":39514754,"index.pck":17649168,"index.pck?build=46f2ee0bec39ac73":17649168},"focusCanvas":true,"gdextensionLibs":[],"godotPoolSize":4,"mainPack":"index.pck?build=46f2ee0bec39ac73"};
 const GODOT_THREADS_ENABLED = false;
 window.BlockrealmMobileProfile.configure(GODOT_CONFIG, document.getElementById("canvas"));
 const engine = new Engine(GODOT_CONFIG);
@@ -137,6 +139,7 @@ const engine = new Engine(GODOT_CONFIG);
 			return;
 		}
 		statusOverlay.style.visibility = 'visible';
+        statusOverlay.dataset.mode = mode;
 		statusProgress.style.display = mode === 'progress' ? 'block' : 'none';
 		statusNotice.style.display = mode === 'notice' ? 'block' : 'none';
 		statusMode = mode;
@@ -208,6 +211,9 @@ const engine = new Engine(GODOT_CONFIG);
 				if (current > 0 && total > 0) {
 					statusProgress.value = current;
 					statusProgress.max = total;
+                    const percent = Math.min(100, Math.floor(current / total * 100));
+                    document.getElementById('loading-percent').textContent = percent + '%';
+                    document.getElementById('loading-stage').textContent = percent === 100 ? 'กำลังเปิดเกม' : 'กำลังดาวน์โหลดเกม';
 				} else {
 					statusProgress.removeAttribute('value');
 					statusProgress.removeAttribute('max');

@@ -5,9 +5,13 @@
   const form=document.querySelector('#account-form'),name=document.querySelector('#username'),password=document.querySelector('#password'),confirmation=document.querySelector('#confirmation');
   const status=document.querySelector('#status'),submit=document.querySelector('#submit'),toggle=document.querySelector('#switch');
   let register=false,busy=false,grant=null,currentSession=null,gameFrame=null;
-  const GAME_URL='play/index.html?build=23a21c26426d5574';
+  const GAME_URL='play/index.html?build=46f2ee0bec39ac73';
   const root=document.documentElement,area=document.querySelector('#play-area');
   const $=sel=>document.querySelector(sel);
+  const tools=$('#play-tools');
+  $('#play-tools-close').addEventListener('click',()=>{tools.open=false;if(gameFrame)gameFrame.contentWindow.focus();});
+  $('#play-fullscreen').addEventListener('click',()=>{tools.open=false;enterFullscreen();});
+  document.addEventListener('keydown',event=>{if(event.key==='Escape')tools.open=false;});
   // ---------- phones / tablets ----------
   const coarse=!!(window.matchMedia&&matchMedia('(pointer:coarse)').matches);
   const mobile=(coarse&&(navigator.maxTouchPoints||0)>0)||/Android|iPhone|iPad|iPod|Mobile/i.test(navigator.userAgent||'');
@@ -81,6 +85,7 @@
   function updateSession(token,username){
     currentSession=token&&/^[a-f0-9]{64}$/.test(token)&&/^[a-z][a-z0-9_]{2,23}$/.test(username)?{session_token:token,expected_username:username}:null;
     document.querySelector('#account-name').textContent=currentSession?'บัญชี: '+username:'เซฟในเครื่อง — ยังไม่ได้เข้าสู่บัญชี';
+    $('#play-account-label').textContent=$('#account-name').textContent;
     if(!currentSession)grant=null;
   }
   window.BlockrealmGameAccountBridge=Object.freeze({take(){const value=grant;grant=null;return value?JSON.stringify(value):'';},update:updateSession});
