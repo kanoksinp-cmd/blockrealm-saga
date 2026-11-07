@@ -1,0 +1,7 @@
+# Mobile map frame and automatic resource gathering
+
+The mobile world-map image remains a 512x512 coordinate surface inside a fitted square display. The parent frame uses the displayed square's real size instead of reserving 512 pixels and clipping it inside the mobile window. Location lists scroll independently, with all original local/world map clicks, player pins and quest marker coordinates preserved. Desktop map presentation is unchanged.
+
+AUTO preserves a selected or already active resource interaction. It continues harvesting, selects the next ready resource of the same type in the same map within 40 units of the original selection, and waits without spam when none are ready. Picking a resource while AUTO is running explicitly selects gathering rather than hunting/quest travel. Potions still run before resource automation. Manual walking, another interaction or turning gathering AUTO off cancels the resource task. Unreachable veins are temporarily skipped without switching to combat.
+
+Validation: mobile local/world maps and coordinate checks at two viewport sizes; native screenshots for both views; real player physics walks to ore, enabling AUTO mid-harvest keeps progress, ore charges produce inventory rewards, next vein is reached/harvested, exhausted resources wait/resume, unreachable exclusion is honoured, and AUTO-off/manual cancellation works. Normal AUTO combat still selects monsters. Gathering scenarios pass with both mobile and desktop profiles; previous touch UI regression checks pass.
