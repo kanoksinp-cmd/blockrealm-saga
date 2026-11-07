@@ -13,3 +13,5 @@ html:has(#play-area:not([hidden])),html:has(#play-area:not([hidden])) body{heigh
 .play-tools-body button,.play-tools-body a{display:block;width:100%;margin:10px 0 0;padding:9px;text-align:center;border-radius:8px;font-size:12px;text-decoration:none;border:1px solid #79684b;background:#25303e;color:#f0d59c}
 html.mobile-play #play-tools{display:none}
 #play-area:fullscreen{height:100%;width:100%}
+
+html.mobile-play #play-area{padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
