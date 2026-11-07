@@ -1,0 +1,108 @@
+[
+  {
+    "name": "core",
+    "passed": true,
+    "seconds": 5.1,
+    "highlights": [
+      "PASS_PHASE careers checks=3246",
+      "PASS_PHASE levels and skills checks=4064",
+      "PASS_PHASE monsters/recipes count=132 checks=7404",
+      "PASS_PHASE quests checks=7550",
+      "PASS_PHASE save checks=7583",
+      "AUDIT_CORE checks=7583 failures=0"
+    ]
+  },
+  {
+    "name": "lifecycle",
+    "passed": true,
+    "seconds": 13.6,
+    "highlights": [
+      "AUDIT_LIFECYCLE checks=14 failures=[]; includes public queued skill -> buff -> arrival"
+    ]
+  },
+  {
+    "name": "ui-pc",
+    "passed": true,
+    "seconds": 14.9,
+    "highlights": [
+      "PASS_UI_SIZE (1280, 720) checks=13",
+      "AUDIT_UI mobile=false checks=17 failures=[]"
+    ]
+  },
+  {
+    "name": "ui-mobile",
+    "passed": true,
+    "seconds": 34.6,
+    "highlights": [
+      "PASS_UI_SIZE (1055, 488) checks=47",
+      "PASS_UI_SIZE (844, 450) checks=92",
+      "PASS_UI_SIZE (488, 1055) checks=137",
+      "AUDIT_UI mobile=true checks=141 failures=[]"
+    ]
+  },
+  {
+    "name": "map-gather",
+    "passed": true,
+    "seconds": 23.1,
+    "highlights": [
+      "PASS_MAP full image, frame and tap coordinates (1055, 488)",
+      "PASS_MAP full image, frame and tap coordinates (844, 450)",
+      "PASS_GATHER walk, enable AUTO mid-mine, preserve progress, harvest two charges",
+      "PASS_AUTO_GATHER next vein, stable area anchor, waiting/resume and explicit cancel",
+      "PASS_AUTO_COMBAT normal hunt mode retained"
+    ]
+  },
+  {
+    "name": "gold",
+    "passed": true,
+    "seconds": 23.3,
+    "highlights": [
+      "PASS_GOLD_FIND actual fashion recipe button -> smithy exit -> town -> desert -> mine -> gold inventory; [\"smithy\", \"town\", \"desert\"]",
+      "PASS_RESOURCE_ROUTE town fallback and manual cancellation"
+    ]
+  },
+  {
+    "name": "scroll",
+    "passed": true,
+    "seconds": 16.1,
+    "highlights": [
+      "PASS_SCROLL exact up/down displacement, no inertia jump, fixed panel and no accidental button",
+      "PASS_NESTED axis lock, parent selection, horizontal controls and edge handoff",
+      "PASS_ITEM release-only item actions"
+    ]
+  },
+  {
+    "name": "bosses",
+    "passed": true,
+    "seconds": 17.7,
+    "highlights": [
+      "VERDANT BOSSES PASS"
+    ]
+  },
+  {
+    "name": "damage",
+    "passed": true,
+    "seconds": 3.2,
+    "highlights": [
+      "RO DAMAGE PASS; expiration checked against current DURATION + 0.2, not obsolete 1-second timeout"
+    ]
+  },
+  {
+    "name": "arsenal",
+    "passed": true,
+    "seconds": 2.8,
+    "highlights": [
+      "ARSENAL PASS"
+    ]
+  },
+  {
+    "name": "ruins-budget",
+    "passed": true,
+    "seconds": 3.0,
+    "highlights": [
+      "PASS_RUINS desert courts=3 clear paths, spawns and gates",
+      "PASS_RUINS verdant courts=2 clear paths, spawns and gates",
+      "PASS_BUDGET particle caps and mobile shadow/MSAA limits preserved"
+    ]
+  }
+]
