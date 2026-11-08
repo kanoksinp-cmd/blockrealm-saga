@@ -18,8 +18,8 @@
       const resize = () => {
         const w = Math.max(1, Math.round(innerWidth));
         const h = Math.max(1, Math.round(innerHeight));
-        const factor = Math.min(devicePixelRatio || 1, 1.25,
-          1280 / Math.max(w, h), 800 / Math.min(w, h));
+        const factor = Math.min(devicePixelRatio || 1, 1.0,
+          1024 / Math.max(w, h), 640 / Math.min(w, h));
         canvas.style.width = `${w}px`;
         canvas.style.height = `${h}px`;
         const width = Math.max(1, Math.round(w * factor));

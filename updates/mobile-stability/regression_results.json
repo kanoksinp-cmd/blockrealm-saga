@@ -1,0 +1,61 @@
+[
+  {
+    "test": "background",
+    "passed": true,
+    "result": [
+      "PASS_BACKGROUND one save per background transition; 5/30 FPS; title protected"
+    ]
+  },
+  {
+    "test": "gold",
+    "passed": true,
+    "result": [
+      "PASS_GOLD_FIND actual fashion recipe button -> smithy exit -> town -> desert -> mine -> gold inventory; [\"smithy\", \"town\", \"desert\"]",
+      "PASS_RESOURCE_ROUTE town fallback and manual cancellation"
+    ]
+  },
+  {
+    "test": "map-gather",
+    "passed": true,
+    "result": [
+      "PASS_MAP full image, frame and tap coordinates (1055, 488)",
+      "PASS_MAP full image, frame and tap coordinates (844, 450)",
+      "PASS_GATHER walk, enable AUTO mid-mine, preserve progress, harvest two charges",
+      "PASS_AUTO_GATHER next vein, stable area anchor, waiting/resume and explicit cancel",
+      "PASS_AUTO_COMBAT normal hunt mode retained"
+    ]
+  },
+  {
+    "test": "scroll",
+    "passed": true,
+    "result": [
+      "PASS_SCROLL exact up/down displacement, no inertia jump, fixed panel and no accidental button",
+      "PASS_NESTED axis lock, parent selection, horizontal controls and edge handoff",
+      "PASS_ITEM release-only item actions"
+    ]
+  },
+  {
+    "test": "sale",
+    "passed": true,
+    "result": [
+      "PASS_SELL_ALL mobile=1 current stack, 20k+ quantity, exact proceeds, other/equipped items retained, repeat safe, quantity sell and buy tab retained"
+    ]
+  },
+  {
+    "test": "lifecycle",
+    "passed": true,
+    "result": [
+      "AUDIT_LIFECYCLE checks=14 failures=[]"
+    ]
+  },
+  {
+    "test": "ui-mobile",
+    "passed": true,
+    "result": [
+      "PASS_UI_SIZE (1055, 488) checks=47",
+      "PASS_UI_SIZE (844, 450) checks=92",
+      "PASS_UI_SIZE (488, 1055) checks=137",
+      "AUDIT_UI mobile=true checks=141 failures=[]"
+    ]
+  }
+]
