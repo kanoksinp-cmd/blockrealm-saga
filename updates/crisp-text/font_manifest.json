@@ -1,0 +1,23 @@
+[
+  {
+    "hinting": 2,
+    "name": "ui_font",
+    "oversampling": 2.0,
+    "resource": "res://assets/fonts/crisp_ui_font.res",
+    "subpixel": 1
+  },
+  {
+    "hinting": 2,
+    "name": "ui_font_bold",
+    "oversampling": 2.0,
+    "resource": "res://assets/fonts/crisp_ui_font_bold.res",
+    "subpixel": 1
+  },
+  {
+    "hinting": 2,
+    "name": "ui_font_title",
+    "oversampling": 2.0,
+    "resource": "res://assets/fonts/crisp_ui_font_title.res",
+    "subpixel": 1
+  }
+]
