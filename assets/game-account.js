@@ -5,7 +5,7 @@
   const form=document.querySelector('#account-form'),name=document.querySelector('#username'),password=document.querySelector('#password'),confirmation=document.querySelector('#confirmation');
   const status=document.querySelector('#status'),submit=document.querySelector('#submit'),toggle=document.querySelector('#switch');
   let register=false,busy=false,grant=null,currentSession=null,gameFrame=null;
-  const GAME_URL='play/index.html?build=c7149a20d5d279dc';
+  const GAME_URL='play/index.html?build=3bf8baa0a7c648f8';
   const root=document.documentElement,area=document.querySelector('#play-area');
   const $=sel=>document.querySelector(sel);
   const tools=$('#play-tools');
@@ -35,18 +35,18 @@
     const b=$('#m-fs');if(!b)return;
     b.hidden=!(mobile&&canFullscreen&&!standalone&&gameFrame&&!isFull()&&$('#m-start').hidden);
   }
-  function lockLandscape(){
-    try{if(screen.orientation&&screen.orientation.lock)screen.orientation.lock('landscape').catch(()=>{});}catch(_){}
+  function lockPortrait(){
+    try{if(screen.orientation&&screen.orientation.lock)screen.orientation.lock('portrait').catch(()=>{});}catch(_){}
   }
   function enterFullscreen(){
     userExited=false;
     if(!mobile){if(gameFrame&&gameFrame.requestFullscreen)gameFrame.requestFullscreen().catch(()=>{});return Promise.resolve(false);}
     window.scrollTo(0,0);fitHeight();keepAwake();
-    if(isFull()){lockLandscape();return Promise.resolve(true);}
+    if(isFull()){lockPortrait();return Promise.resolve(true);}
     const request=area.requestFullscreen||area.webkitRequestFullscreen;
     if(!request)return Promise.resolve(false);
     let p;try{p=Promise.resolve(request.call(area,{navigationUI:'hide'}));}catch(e){p=Promise.reject(e);}
-    return p.then(()=>{lockLandscape();syncFsButton();return true;}).catch(()=>{syncFsButton();return false;});
+    return p.then(()=>{lockPortrait();syncFsButton();return true;}).catch(()=>{syncFsButton();return false;});
   }
   function refullscreen(){
     if(!mobile||userExited||isFull()||!canFullscreen||standalone||Date.now()-lastExit<800)return;

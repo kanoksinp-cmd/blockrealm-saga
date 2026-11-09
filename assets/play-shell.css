@@ -15,3 +15,6 @@ html.mobile-play #play-tools{display:none}
 #play-area:fullscreen{height:100%;width:100%}
 
 html.mobile-play #play-area{padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+
+/* Mobile portrait keeps its safe area and never covers the game with a rotate prompt. */
+html.mobile-play #m-rotate{display:none!important}

@@ -1,0 +1,30 @@
+{
+  "name": "Blockrealm Saga",
+  "short_name": "Blockrealm",
+  "start_url": "./",
+  "scope": "./",
+  "display": "fullscreen",
+  "orientation": "portrait",
+  "background_color": "#0b0c1e",
+  "theme_color": "#0b0c1e",
+  "icons": [
+    {
+      "src": "assets/icons/blockrealm-home-20261109-192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "assets/icons/blockrealm-home-20261109-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "play/icon-maskable-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "maskable"
+    }
+  ]
+}

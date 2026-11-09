@@ -1,0 +1,26 @@
+{
+  "build": "3bf8baa0a7c648f8",
+  "portrait_sizes": [
+    "360x640",
+    "390x844",
+    "430x932",
+    "768x1024"
+  ],
+  "rotation_landscape": "844x390",
+  "desktop_layout_unchanged": true,
+  "gameplay_and_damage_scripts_unchanged": true,
+  "checks": [
+    "HUD and touch bounds",
+    "12 popup window bounds",
+    "populated NPC shops and smithy",
+    "NPC dialog",
+    "PC before/after snapshot equality",
+    "native 390x844 screenshots reviewed",
+    "manifest portrait preference and referenced icon files",
+    "game-account.js syntax"
+  ],
+  "limitations": [
+    "Native viewport emulation; no direct iPhone Safari test.",
+    "Existing game cleanup resource warnings also occur in baseline desktop run."
+  ]
+}
