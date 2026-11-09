@@ -1,0 +1,33 @@
+{
+  "build": "d808bd8384ddbed0",
+  "runtime": "Godot 4.7.2",
+  "validation": [
+    "Inventory search, sorting and sale-lock behavior",
+    "Side-by-side equipment stat deltas",
+    "Stale sale confirmation rejected; exact item and gold changes",
+    "Rebind conflict rejection, typing focus safety, profile persistence",
+    "HUD edit cancel, save, reload and reset",
+    "NPC, resource and boss search indices; map pin persistence",
+    "Both gold-ore source maps, explicit selected map and legacy default route",
+    "150-event combat log cap and recording while floating numbers disabled",
+    "Boss wind-up warning and clearing after impact",
+    "Graphics presets and FPS cap",
+    "Popup fitting at UI scale 1.0 and 1.5",
+    "Five-size mobile portrait/landscape regression",
+    "Combat HP and existing floating-damage regression",
+    "Native 1280x720 captures reviewed"
+  ],
+  "scope": [
+    "PC controller branch and UI extension",
+    "Optional source-area argument for gather travel; original one-argument behavior preserved",
+    "PC-only combat-log observer; no combat arithmetic changes"
+  ],
+  "limitations": [
+    "UI preferences, keyboard profiles and sale locks are local to this browser/device; character saves retain the existing account sync.",
+    "Resource pins identify source areas, not exact individual ore spawn nodes.",
+    "Combat records include damage to monsters from all attackers, not player-only DPS.",
+    "Boss warnings cover existing Monster attack wind-ups, not every custom boss ability.",
+    "Native renderer and viewport emulation tested; actual Safari and browser performance were not benchmarked.",
+    "Existing baseline Godot resource warnings at shutdown remain."
+  ]
+}
