@@ -1,0 +1,25 @@
+{
+  "build": "1fbc774bb087ea10",
+  "sizes": [
+    "360x640",
+    "390x844",
+    "430x932",
+    "768x1024",
+    "844x390"
+  ],
+  "checks": [
+    "Compact HUD bounds",
+    "All action button bounds and circular target separation",
+    "All six menu drawer callbacks",
+    "Drawer closed by default",
+    "Legacy widgets collapsed in portrait",
+    "No rectangular skill slab after closing menus",
+    "Existing inventory, shop, smithy, map, skill, options, quest and party windows",
+    "Desktop layout snapshot equality",
+    "Native 390x844 OpenGL captures inspected"
+  ],
+  "limitations": [
+    "Real iPhone Safari verification unavailable",
+    "Existing baseline game shutdown resource warnings remain"
+  ]
+}
