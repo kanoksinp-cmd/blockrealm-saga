@@ -1,0 +1,7 @@
+# Browser tab icon compatibility — 9 November 2026
+
+The live original 128px PNG and root ICO both returned HTTP 200, so a missing source image was not reproduced. The main/account pages declared only one PNG favicon; the ICO fallback was not explicitly linked. This update reuses the existing winged-sword game mark with versioned filenames, a BMP-based multi-size ICO (16/32/48), RGBA PNGs (16/32/48) and a 180px Apple touch icon. Every entry page declares these explicitly with sizes and relative paths that work under the GitHub Pages project directory. The inner Godot page retains its -gd-engine-icon hook. Conventional root ICO/touch fallbacks are updated too.
+
+Validation: parse all three HTML heads, resolve every icon path, decode actual file contents and confirm dimensions/color mode/ICO entries. Live file content and MIME types are checked after deployment. The game PCK, account/session logic, rendering settings, gameplay and saves are unchanged. This does not prove display on the user's physical Safari or override browser icon settings/cached tab UI; reopening the page in a new tab may be necessary. Clearing all website data is not required by this change.
+
+References: [MDN page icons](https://developer.mozilla.org/en-US/docs/Learn_web_development/Core/Structuring_content/Webpage_metadata), [Apple web app icons](https://developer.apple.com/library/archive/documentation/AppleApplications/Reference/SafariWebContent/ConfiguringWebApplications/ConfiguringWebApplications.html).

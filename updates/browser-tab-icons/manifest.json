@@ -1,0 +1,10 @@
+{
+  "tag": "2fd3ceda66cc",
+  "prefix": "blockrealm-2fd3ceda66cc",
+  "game_build": "526946e82d6656ac",
+  "expected_html": {
+    "index.html": "077e5058cfa246a9cf661814365b38d38a92d6c79e228a48d56f669206632958",
+    "account.html": "42aa11ebab751d143febaf3fe07657cefd246d5aaa5a1825a04ace0ddfae87b2",
+    "play/index.html": "b8a0dffe2a12da85057685d67bf18cca917600a1612959344a9c6dfddff25d29"
+  }
+}
