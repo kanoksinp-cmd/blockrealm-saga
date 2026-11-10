@@ -1,0 +1,20 @@
+{
+  "build": "d0b65d373a389cf4",
+  "outfits": 17,
+  "artwork": "Existing website promo artwork, cropped into static thumbnails bounded to 256 pixels",
+  "tests": [
+    "PC and mobile gallery opens, correct card IDs and all 17 images",
+    "PC shop resolves actual NPC node by name and distance",
+    "Craft uses existing authoritative recipe; exact material and Zeny subtraction",
+    "Owned sets cannot charge crafting cost twice",
+    "Wardrobe gallery cannot craft remotely; out-of-range vendor craft rejected",
+    "Unlocked fashion equips by selected ID",
+    "Gallery fits desktop and phone viewports",
+    "Find material starts ore auto-travel after modal windows close",
+    "Native OpenGL PC and portrait screenshots reviewed"
+  ],
+  "limits": [
+    "Phone viewport emulation; no direct iPhone Safari test",
+    "Existing baseline Godot shutdown resource warnings remain"
+  ]
+}
