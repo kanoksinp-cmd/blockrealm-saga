@@ -1,0 +1,17 @@
+{
+  "sha256": "bc63d48304cf6afd426349360df9981412220fb19e9fc960922780451c1de316",
+  "account_schema": "unchanged",
+  "autosave_seconds": 10,
+  "position_starts_recording": "this_version",
+  "native_selection_previews_reviewed": true,
+  "physical_phone_test": false,
+  "pc_runtime": "pass",
+  "emulated_mobile_runtime": "pass",
+  "cloud_capture_validate_install": "pass",
+  "fresh_scene_resume": [
+    "town",
+    "desert_d"
+  ],
+  "invalid_checkpoint_fallback": "pass",
+  "save_keys_unchanged": true
+}
