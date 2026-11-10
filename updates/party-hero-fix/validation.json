@@ -1,0 +1,22 @@
+{
+  "sha256": "d73a5ac01b068a90ee2c17a19deade24e3a3e27a40ea6ad4db5e6b921c3f5d1c",
+  "party_professions_tested": [
+    "swordsman",
+    "merchant",
+    "thief",
+    "archer",
+    "mage",
+    "acolyte"
+  ],
+  "party_pc": "pass",
+  "party_emulated_mobile": "pass",
+  "card_pc": "pass",
+  "card_emulated_mobile": "pass",
+  "damage_arc": "pass",
+  "damage_fonts": {
+    "normal": 38,
+    "critical": 46
+  },
+  "native_previews_reviewed": true,
+  "physical_phone_test": false
+}
