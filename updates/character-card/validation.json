@@ -1,0 +1,19 @@
+{
+  "build": "c68cf7824c6376a6",
+  "checks": [
+    "PC and mobile card bounds",
+    "Grouped icon, stat name and value columns",
+    "Integer formatting of serialized numeric stats",
+    "Stat increase consumes existing exact point cost",
+    "Increase buttons disabled when points are insufficient",
+    "Visible portrait rotates at inventory speed",
+    "Pause and resume work",
+    "Hiding card disables preview rendering",
+    "Native front and turned views with a full winged fashion reviewed"
+  ],
+  "scope": "Only character-card presentation and its visible preview processing in the shared UI script",
+  "limits": [
+    "Native viewport emulation; no direct iPhone Safari verification",
+    "Existing baseline shutdown resource warnings remain"
+  ]
+}
