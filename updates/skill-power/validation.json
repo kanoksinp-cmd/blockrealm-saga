@@ -1,0 +1,12 @@
+{
+  "pack_sha256": "05cb01032805fa71e763cdae80343a6e7c7c2ba0f20e8824a6cc04086a26dbd6",
+  "active_skills": 151,
+  "pc": "pass",
+  "emulated_mobile": "pass",
+  "damage_arc_regression": "pass",
+  "concurrent_accent_limit": {
+    "mobile": 7,
+    "pc": 18
+  },
+  "physical_phone_test": false
+}
