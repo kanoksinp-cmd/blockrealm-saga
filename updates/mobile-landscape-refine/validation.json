@@ -1,0 +1,12 @@
+{
+  "sha256": "c0af4e6a1504bcb7db4aaafb920a6ca84f3a7cf6767a2b630cac0fe3ae6e0d10",
+  "transfer_categories": 20,
+  "fee_formula": "1000 * level * level",
+  "orientation": "landscape",
+  "physical_phone_test": false,
+  "touch_matrix": "pass",
+  "transfer_pc": "pass",
+  "transfer_mobile": "pass",
+  "native_previews": "reviewed",
+  "web_rotate_fixture": "pass"
+}
