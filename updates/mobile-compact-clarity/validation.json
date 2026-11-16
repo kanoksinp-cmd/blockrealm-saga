@@ -1,0 +1,15 @@
+{
+  "sha256": "1337ff0195b2d221d34bc4d7053169ebfc47a1fb324d9b3cad2da6d0147357cf",
+  "mobile_render_dpr_max": 1.25,
+  "pixel_budget": 720000,
+  "mobile_ui_scale": [
+    0.95,
+    1.1
+  ],
+  "physical_phone_test": false,
+  "native_previews_reviewed": true,
+  "ui_scale_collision_matrix": "pass",
+  "multi_touch_and_rotation": "pass",
+  "resolution_js_fixture": "pass",
+  "native_previews": "reviewed"
+}
