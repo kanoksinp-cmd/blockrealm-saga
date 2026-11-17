@@ -472,7 +472,7 @@ body.touch.game-expanded main>.bar{display:none!important}
   function start(){
     if(frame) return frame;
     frame=document.createElement('iframe');
-    frame.src='play/index.html?build=d8c66ae8ccc0ecc7';
+    frame.src='play/index.html?build=8de1b800fd4d0b42';
     frame.title='Blockrealm Saga';
     frame.setAttribute('allow','fullscreen; autoplay; gamepad');
     frame.setAttribute('allowfullscreen','');
@@ -536,13 +536,10 @@ body.touch.game-expanded main>.bar{display:none!important}
     userExited=false;
     expanded(true);
     if(!mobile)return;
-    document.body.classList.add('rotate-hint');
     var main=stage.parentElement;
     var request=main.requestFullscreen||main.webkitRequestFullscreen;
     var ready=document.fullscreenElement?Promise.resolve():request?(function(){try{return Promise.resolve(request.call(main));}catch(e){return Promise.reject(e);}})():Promise.reject();
-    ready.then(function(){
-      if(screen.orientation&&screen.orientation.lock)return screen.orientation.lock('landscape');
-    }).catch(function(){});
+    ready.catch(function(){});
   };
   document.addEventListener('fullscreenchange',function(){
     if(document.fullscreenElement)return;

@@ -46,7 +46,7 @@
     unlockButton.id = 'enable-game-audio';
     unlockButton.textContent = 'เปิดเสียง';
     unlockButton.setAttribute('aria-label', 'แตะเพื่อเปิดเสียงเกม');
-    unlockButton.style.cssText = 'position:fixed;z-index:1000;left:50%;bottom:max(12px,env(safe-area-inset-bottom));transform:translateX(-50%);min-height:44px;padding:8px 18px;background:#171d26;color:#f2eee5;border:1px solid #c7a567;border-radius:9px;font:14px system-ui,sans-serif;touch-action:manipulation;';
+    unlockButton.style.cssText = 'position:fixed;z-index:1000;left:50%;top:30%;transform:translate(-50%,-50%);box-shadow:0 6px 18px #0009;min-height:44px;padding:8px 18px;background:#171d26;color:#f2eee5;border:1px solid #c7a567;border-radius:9px;font:14px system-ui,sans-serif;touch-action:manipulation;';
     unlockButton.hidden = true;
     unlockButton.addEventListener('click', resume);
     document.body.appendChild(unlockButton);

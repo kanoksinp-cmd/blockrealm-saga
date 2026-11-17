@@ -5,7 +5,7 @@
   const form=document.querySelector('#account-form'),name=document.querySelector('#username'),password=document.querySelector('#password'),confirmation=document.querySelector('#confirmation');
   const status=document.querySelector('#status'),submit=document.querySelector('#submit'),toggle=document.querySelector('#switch');
   let register=false,busy=false,grant=null,currentSession=null,gameFrame=null;
-  const GAME_URL='play/index.html?build=d8c66ae8ccc0ecc7';
+  const GAME_URL='play/index.html?build=8de1b800fd4d0b42';
   // Remember the sign-in on this device so a refresh, a reopened tab or the game frame
   // reloading does not ask for the password again. Server sessions last 24 hours.
   const REMEMBER_KEY='blockrealm.game-session.v1',REMEMBER_MS=23*3600*1000;
@@ -44,7 +44,7 @@
     b.hidden=!(mobile&&canFullscreen&&!standalone&&gameFrame&&!isFull()&&$('#m-start').hidden);
   }
   function lockLandscape(){
-    try{if(screen.orientation&&screen.orientation.lock)screen.orientation.lock('landscape').catch(()=>{});}catch(_){}
+    /* portrait and landscape are both supported: no orientation lock */
   }
   function enterFullscreen(){
     userExited=false;
