@@ -6,6 +6,14 @@
   const status=document.querySelector('#status'),submit=document.querySelector('#submit'),toggle=document.querySelector('#switch');
   let register=false,busy=false,grant=null,currentSession=null,gameFrame=null;
   const GAME_URL='play/index.html?build=1337ff0195b2d221';
+  // Remember the sign-in on this device so a refresh, a reopened tab or the game frame
+  // reloading does not ask for the password again. Server sessions last 24 hours.
+  const REMEMBER_KEY='blockrealm.game-session.v1',REMEMBER_MS=23*3600*1000;
+  function remembered(){try{const v=JSON.parse(localStorage.getItem(REMEMBER_KEY)||'null');
+    if(v&&/^[a-f0-9]{64}$/.test(v.t)&&/^[a-z][a-z0-9_]{2,23}$/.test(v.u)&&v.e>Date.now())return v;}catch(_){}
+    forget();return null;}
+  function remember(token,user){try{localStorage.setItem(REMEMBER_KEY,JSON.stringify({t:token,u:user,e:Date.now()+REMEMBER_MS}));}catch(_){}}
+  function forget(){try{localStorage.removeItem(REMEMBER_KEY);}catch(_){}}
   const root=document.documentElement,area=document.querySelector('#play-area');
   const $=sel=>document.querySelector(sel);
   const tools=$('#play-tools');
@@ -88,7 +96,14 @@
     $('#play-account-label').textContent=$('#account-name').textContent;
     if(!currentSession)grant=null;
   }
-  window.BlockrealmGameAccountBridge=Object.freeze({take(){const value=grant;grant=null;return value?JSON.stringify(value):'';},update:updateSession});
+  // The game asks for the sign-in each time it starts. Answer with the current session every
+  // time (not only once), so a reloaded or crashed-and-restarted game frame stays signed in.
+  // update() is called by the game after an in-game sign-in or sign-out.
+  window.BlockrealmGameAccountBridge=Object.freeze({
+    take(){const value=currentSession||grant;grant=null;return value?JSON.stringify(value):'';},
+    update(token,username){updateSession(token,username);
+      if(currentSession){if(!rememberBox||rememberBox.checked)remember(currentSession.session_token,currentSession.expected_username);}else forget();}
+  });
   window.blockrealmReloadGame=()=>{
     if(!gameFrame)return;grant=currentSession?{...currentSession}:null;
     gameFrame.src='about:blank';setTimeout(()=>{gameFrame.src=GAME_URL},50);
@@ -122,11 +137,18 @@
       const data=await response.json();
       if(!response.ok||!data.ok){status.textContent=messages[data.error]||'เชื่อมต่อบัญชีไม่สำเร็จ กรุณาลองใหม่';return;}
       if(!data.user||data.user.username!==username||typeof data.session_token!=='string'||!/^[a-f0-9]{64}$/.test(data.session_token))throw Error('invalid session');
-      updateSession(data.session_token,data.user.username);grant={...currentSession};
+      updateSession(data.session_token,data.user.username);
+      if(rememberBox&&rememberBox.checked)remember(data.session_token,data.user.username);else forget();
       password.value='';confirmation.value='';
-      document.querySelector('#account-name').textContent='บัญชี: '+data.user.username;
+      launch(data.user.username);
+    }catch(_){status.textContent='เชื่อมต่อเซิร์ฟเวอร์ไม่ได้ กรุณาลองใหม่';}
+    finally{lock(false);}
+  });
+  function launch(username){
+      grant=currentSession?{...currentSession}:null;
+      document.querySelector('#account-name').textContent='บัญชี: '+username;
       document.querySelector('#account-card').hidden=true;document.querySelector('#play-area').hidden=false;
-      const frame=document.createElement('iframe');gameFrame=frame;frame.title='Blockrealm Saga — เกมของบัญชี '+data.user.username;
+      const frame=document.createElement('iframe');gameFrame=frame;frame.title='Blockrealm Saga — เกมของบัญชี '+username;
       frame.allow='autoplay; fullscreen; gamepad; screen-wake-lock';frame.src=GAME_URL;
       frame.addEventListener('load',()=>{
         try{frame.contentWindow.focus();}catch(_){}
@@ -136,8 +158,33 @@
       });
       document.querySelector('#game-host').appendChild(frame);
       if(mobile)startMobile();
-    }catch(_){status.textContent='เชื่อมต่อเซิร์ฟเวอร์ไม่ได้ กรุณาลองใหม่';}
+  }
+  // "remember me" checkbox under the password (on by default; untick on shared computers)
+  const rememberBox=(()=>{const row=document.createElement('label');row.className='remember';
+    row.innerHTML='<input type="checkbox" id="remember" checked style="width:18px;height:18px;min-width:0;margin:0;padding:0;flex:none;accent-color:#e9bf62"><span>จำการเข้าสู่ระบบในเครื่องนี้ (24 ชั่วโมง)</span>';
+    row.style.cssText='display:flex;gap:10px;align-items:center;justify-content:flex-start;text-align:left;margin:12px 0 4px;font-size:14px;cursor:pointer;width:auto';
+    status.parentNode.insertBefore(row,status);return row.querySelector('input');})();
+  // sign out from the page (clears the remembered sign-in and ends the server session)
+  function signOut(){
+    const s=currentSession||(remembered()&&{session_token:remembered().t});
+    forget();updateSession('','');
+    if(s&&s.session_token)fetch(endpoint+'/rest/v1/rpc/game_sign_out',{method:'POST',headers:{apikey:key,'Content-Type':'application/json'},body:JSON.stringify({p_session_token:s.session_token}),keepalive:true}).catch(()=>{});
+    setTimeout(()=>location.reload(),150);
+  }
+  (()=>{const body=document.querySelector('#play-tools .play-tools-body');if(!body)return;
+    const b=document.createElement('button');b.type='button';b.id='play-sign-out';b.textContent='ออกจากระบบบัญชีนี้';
+    b.addEventListener('click',signOut);body.insertBefore(b,body.querySelector('a'));})();
+  // come back signed in: check the remembered session with the server, then start the game
+  (async()=>{
+    const saved=remembered();if(!saved)return;
+    lock(true);status.textContent='กำลังกลับเข้าบัญชี '+saved.u+'…';
+    try{
+      const r=await fetch(endpoint+'/rest/v1/rpc/game_whoami',{method:'POST',headers:{apikey:key,'Content-Type':'application/json'},body:JSON.stringify({p_session_token:saved.t}),signal:AbortSignal.timeout(20000),cache:'no-store'});
+      const d=await r.json();
+      if(r.ok&&d&&d.ok&&d.user&&d.user.username===saved.u){updateSession(saved.t,saved.u);status.textContent='';launch(saved.u);return;}
+      forget();status.textContent='การเข้าสู่ระบบหมดอายุ กรุณาเข้าสู่ระบบอีกครั้ง';
+    }catch(_){status.textContent='เชื่อมต่อบัญชีไม่ได้ กรุณาเข้าสู่ระบบอีกครั้ง';}
     finally{lock(false);}
-  });
+  })();
   submit.disabled=false;toggle.disabled=false;
 })();
