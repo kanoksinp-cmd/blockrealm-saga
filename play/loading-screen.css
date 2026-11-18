@@ -1,7 +1,7 @@
 @font-face{font-family:Prompt;src:url('../assets/fonts/Prompt-Medium.ttf');font-display:swap}
 html,body{width:100%;height:100%;background:#0b101c}
-#status{position:fixed;inset:0;overflow:hidden;background:radial-gradient(ellipse at 50% 25%,#29314b 0%,#111b2a 48%,#090e18 100%);isolation:isolate;font-family:Prompt,system-ui,sans-serif}
-#status::before{content:"";position:absolute;inset:0;z-index:-1;background-image:radial-gradient(#e0c18a66 1px,transparent 1px),linear-gradient(115deg,transparent 40%,#c8ad7020 50%,transparent 60%);background-size:73px 73px,100% 100%;opacity:.45}
+#status{position:fixed;inset:0;overflow:hidden;background:#0b101c url(loading-bg-dawn.webp) center/cover no-repeat;isolation:isolate;font-family:Prompt,system-ui,sans-serif}@media(max-width:900px){#status{background-image:url(loading-bg-dawn-960.webp)}}
+#status::before{content:"";position:absolute;inset:0;z-index:-1;background:radial-gradient(ellipse 70% 60% at 50% 46%,#070b16b8 0%,#070b1680 55%,#070b16cc 100%),linear-gradient(180deg,#070b1666 0%,transparent 30%,transparent 62%,#070b16e6 100%)}
 #status::after{content:"";position:absolute;inset:18px;border:1px solid #d3b37630;border-radius:20px;pointer-events:none}
 #status #status-splash{position:static;inset:auto;width:clamp(76px,16vh,142px);height:auto;max-height:none;max-width:none;margin:0 0 22px;object-fit:contain;border-radius:24%;box-shadow:0 16px 70px #0006}
 .loading-brand{text-align:center;padding:0 24px;max-width:90vw}
