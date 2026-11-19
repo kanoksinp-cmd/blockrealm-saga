@@ -5,7 +5,7 @@
   const form=document.querySelector('#account-form'),name=document.querySelector('#username'),password=document.querySelector('#password'),confirmation=document.querySelector('#confirmation');
   const status=document.querySelector('#status'),submit=document.querySelector('#submit'),toggle=document.querySelector('#switch');
   let register=false,busy=false,grant=null,currentSession=null,gameFrame=null;
-  const GAME_URL='play/index.html?build=320d32f8868c3c39';
+  const GAME_URL='play/index.html?build=292b1b85cc065a60';
   // Remember the sign-in on this device so a refresh, a reopened tab or the game frame
   // reloading does not ask for the password again. Server sessions last 24 hours.
   const REMEMBER_KEY='blockrealm.game-session.v1',REMEMBER_MS=23*3600*1000;
