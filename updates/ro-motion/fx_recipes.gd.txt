@@ -1,0 +1,380 @@
+
+
+# ================================================================== recipes for every other skill
+## id -> list of [primitive, color]. Wave 0 only. Signature skills above keep their own code.
+const RECIPES := {
+	# Swordsman / Knight / Lord Knight / Crusader / Paladin
+	"bash": [["shock", Color(1.0, 0.85, 0.4)], ["stars", Color(1, 1, 0.6)]],
+	"magnum_break": [["fire_ring", Color(1.0, 0.5, 0.15)], ["dust", Color(0.8, 0.6, 0.4)]],
+	"pierce": [["line", Color(0.85, 0.95, 1.0)], ["shock", Color(0.85, 0.95, 1.0)]],
+	"brandish_spear": [["arc", Color(1.0, 0.9, 0.6)], ["dust", Color(0.8, 0.7, 0.5)]],
+	"bowling_bash": [["shock", Color(1.0, 0.75, 0.4)], ["dust", Color(0.85, 0.7, 0.5)]],
+	"spiral_pierce": [["drill", Color(0.8, 0.9, 1.0)], ["shock", Color(0.8, 0.9, 1.0)]],
+	"shield_rush": [["shock", Color(0.9, 0.9, 1.0)], ["stars", Color(1, 1, 0.6)]],
+	"judgement_lance": [["shock", Color(0.95, 0.9, 0.7)]],
+	# Archer / Hunter / Sniper / Bard
+	"double_strafe": [["sparkle", Color(1.0, 0.95, 0.75)]],
+	"blitz_beat": [["falcon", Color(0.75, 0.55, 0.35)]],
+	"falcon_assault": [["falcon", Color(0.95, 0.75, 0.35)], ["shock", Color(1.0, 0.85, 0.5)]],
+	"ankle_snare": [["trap", Color(0.55, 0.9, 0.4)]],
+	"land_mine": [["trap", Color(0.9, 0.7, 0.35)], ["dust", Color(0.8, 0.65, 0.4)]],
+	"claymore_trap": [["trap", Color(1.0, 0.5, 0.2)], ["fire_ring", Color(1.0, 0.5, 0.15)]],
+	"sharp_shooting": [["line", Color(0.8, 0.95, 1.0)]],
+	"crescendo": [["sparkle", Color(0.85, 0.95, 1.0)]],
+	"dissonant_chord": [["notes", Color(0.85, 0.75, 1.0)]],
+	"trick_shot": [["sparkle", Color(1.0, 0.95, 0.75)]],
+	# Mage / Wizard / Sage
+	"fire_bolt": [["glow", Color(1.0, 0.5, 0.15)]],
+	"cold_bolt": [["glow", Color(0.6, 0.85, 1.0)]],
+	"lightning_bolt": [["glow", Color(1.0, 0.95, 0.5)]],
+	"soul_strike": [["ghost", Color(0.8, 0.65, 1.0)]],
+	"fire_ball": [["fire_ring", Color(1.0, 0.45, 0.1)]],
+	"frost_diver": [["ice_block", Color(0.7, 0.9, 1.0)]],
+	"jupitel_thunder": [["thunder_ball", Color(0.7, 0.75, 1.0)]],
+	"holy_light": [["sky_beam", Color(1.0, 0.95, 0.7)]],
+	"soul_destroyer": [["ghost", Color(0.55, 0.3, 0.85)]],
+	"chi_burst": [["glow", Color(0.7, 0.95, 1.0)]],
+	# Merchant / Blacksmith / Alchemist
+	"mammonite": [["coins", Color(1.0, 0.85, 0.3)], ["shock", Color(1.0, 0.85, 0.3)]],
+	"cart_revolution": [["shock", Color(0.85, 0.65, 0.35)], ["dust", Color(0.8, 0.65, 0.45)]],
+	"cart_termination": [["coins", Color(1.0, 0.85, 0.3)], ["dust", Color(0.8, 0.65, 0.45)], ["stars", Color(1, 1, 0.6)]],
+	"hammer_fall": [["shock", Color(0.95, 0.8, 0.45)], ["stars", Color(1, 1, 0.6)]],
+	"acid_flask": [["splash", Color(0.6, 0.95, 0.3)]],
+	"golem_smash": [["splash", Color(0.75, 0.95, 0.35)], ["fire_ring", Color(1.0, 0.6, 0.2)]],
+	"shrapnel_bomb": [["fire_ring", Color(1.0, 0.6, 0.25)], ["dust", Color(0.7, 0.6, 0.5)]],
+	# Thief / Assassin / Rogue
+	"envenom": [["splash", Color(0.5, 0.9, 0.3)]],
+	"sand_attack": [["dust", Color(0.9, 0.78, 0.5)]],
+	"steal": [["sparkle", Color(1.0, 0.85, 0.3)]],
+	"meteor_assault": [["shock", Color(0.6, 0.35, 0.95)], ["smoke", Color(0.4, 0.25, 0.55)]],
+	"dirty_trick": [["smoke", Color(0.5, 0.5, 0.6)]],
+	"knife_fan": [["smoke", Color(0.6, 0.6, 0.7)], ["stars", Color(1, 1, 0.6)]],
+	"ambush_combo": [["smoke", Color(0.5, 0.5, 0.6)]],
+	# Monk / Champion
+	"palm_strike": [["shock", Color(0.8, 0.9, 1.0)]],
+	"rising_dragon_kick": [["shock", Color(0.8, 0.95, 1.0)], ["stars", Color(1, 1, 0.6)]],
+	"cart_revolution_dummy": [],
+}
+
+## Self skills (buffs / heals) -> aura colour.
+const AURAS := {
+	"endure": Color(1.0, 0.7, 0.3), "two_hand_quicken": Color(1.0, 0.85, 0.4), "aura_blade": Color(0.7, 0.85, 1.0),
+	"parrying": Color(0.85, 0.9, 1.0), "improve_concentration": Color(0.7, 1.0, 0.7), "true_sight": Color(0.75, 0.95, 1.0),
+	"wind_walk": Color(0.7, 1.0, 0.85), "mystical_amplification": Color(0.75, 0.6, 1.0), "impositio_manus": Color(1.0, 0.95, 0.6),
+	"adrenaline_rush": Color(1.0, 0.45, 0.2), "power_thrust": Color(1.0, 0.6, 0.25), "maximize_power": Color(1.0, 0.85, 0.35),
+	"maximum_overthrust": Color(1.0, 0.35, 0.15), "meltdown": Color(1.0, 0.55, 0.2), "cloaking": Color(0.5, 0.5, 0.6),
+	"enchant_poison": Color(0.5, 0.95, 0.35), "enchant_deadly_poison": Color(0.6, 0.25, 0.85), "rhythm_of_haste": Color(1.0, 0.8, 0.4),
+	"stage_presence": Color(0.75, 1.0, 0.85), "ballad_of_vigor": Color(1.0, 0.5, 0.5), "whiplash_volley": Color(0.85, 0.75, 1.0),
+	"virtuoso_focus": Color(0.75, 0.65, 1.0), "elemental_infusion": Color(1.0, 0.45, 0.15), "spell_ward": Color(0.6, 0.75, 1.0),
+	"chain_spark": Color(0.6, 0.8, 1.0), "runic_aegis": Color(0.8, 0.75, 1.0), "alloy_coating": Color(0.7, 0.95, 0.75),
+	"elixir_rush": Color(1.0, 0.4, 0.3), "smoke_veil": Color(0.55, 0.55, 0.65), "shadow_step": Color(0.45, 0.45, 0.55),
+	"phantom_blades": Color(0.85, 0.85, 0.95), "aegis_vow": Color(0.95, 0.9, 0.7), "holy_bastion": Color(1.0, 0.95, 0.7),
+	"basilica": Color(1.0, 0.95, 0.75), "magnificat": Color(1.0, 0.95, 0.75), "field_dressing": Color(0.6, 1.0, 0.6),
+	"heal": Color(0.6, 1.0, 0.65),
+}
+
+
+static func _recipe(from: Node, id: String, pos: Vector3, radius: float, wave: int) -> void:
+	if wave != 0:
+		return
+	var list: Array = RECIPES.get(id, [])
+	if list.is_empty():
+		list = _default_recipe(id)
+	for step in list:
+		_prim(from, String(step[0]), step[1], pos, radius)
+
+
+## Skills without their own entry (3rd/4th-job skills): pick something fitting from type and element.
+static func _default_recipe(id: String) -> Array:
+	var s := SkillDB.info(id)
+	var el := ""
+	for k in ["fire", "ice", "lightning", "earth", "wind", "holy", "shadow", "water"]:
+		if id.contains(k):
+			el = k
+	var c: Color = s.get("color", Color(1.0, 0.85, 0.55))
+	match String(s.get("type", "")):
+		"aoe_self":
+			return [["shock", c], ["dust", Color(0.8, 0.7, 0.55)]]
+		"aoe_target":
+			return [["sky_beam", c], ["shock", c]]
+		"bolt":
+			return [["glow", c]]
+		"melee":
+			return [["shock", c]]
+	return []
+
+
+static func _prim(from: Node, kind: String, c: Color, pos: Vector3, radius: float) -> void:
+	match kind:
+		"shock": _shockwave(from, pos, c, maxf(1.2, radius))
+		"stars": _stun_stars(from, pos, c)
+		"fire_ring": _fire_ring(from, pos, c, maxf(1.5, radius))
+		"dust": _dust(from, pos, c, maxf(1.0, radius))
+		"line": _line_beam(from, pos, c)
+		"arc": _arc(from, pos, c, maxf(2.0, radius))
+		"drill": _drill(from, pos, c)
+		"sparkle": _sparkle(from, pos, c)
+		"falcon": _falcon(from, pos, c)
+		"trap": _trap(from, pos, c)
+		"notes": _notes(from, pos, c)
+		"glow": FX.flash(from, pos + Vector3(0, 0.7, 0), c, 0.9)
+		"ghost": _ghost_blast(from, pos, 0.8)
+		"ice_block": _ice_block(from, pos)
+		"thunder_ball": _thunder_ball(from, pos, c)
+		"sky_beam": FX.pillar(from, pos, c, 0.55, 9.0, 0.45)
+		"coins": _coins(from, pos)
+		"splash": _splash(from, pos, c)
+		"smoke": _smoke(from, pos, c)
+
+
+# ------------------------------------------------------------------ primitives
+static func _shockwave(from: Node, pos: Vector3, c: Color, radius: float) -> void:
+	var h := EFX._holder(from, pos, 0.8)
+	var d := _disc(h, 0.4, Color(c, 0.8), 0.06)
+	var m: StandardMaterial3D = d.material_override
+	var tw := d.create_tween()
+	tw.tween_property(d, "scale", Vector3.ONE * radius * 2.6, 0.35).set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_QUAD)
+	tw.parallel().tween_property(m, "albedo_color:a", 0.0, 0.4)
+	FX.ring(from, pos, Color(c, 0.9), radius * 0.8)
+
+
+static func _stun_stars(from: Node, pos: Vector3, c: Color) -> void:
+	var h := EFX._holder(from, pos, 1.6)
+	var pivot := Node3D.new()
+	h.add_child(pivot)
+	pivot.position = Vector3(0, 1.9, 0)
+	for i in 3:
+		var mi := MeshInstance3D.new()
+		var q := QuadMesh.new()
+		q.size = Vector2(0.28, 0.28)
+		mi.mesh = q
+		mi.material_override = EFX._mat(Color(c, 1.0), true, EFX.soft_texture(), true)
+		pivot.add_child(mi)
+		var a := TAU * i / 3.0
+		mi.position = Vector3(cos(a) * 0.45, 0, sin(a) * 0.45)
+		var tw := mi.create_tween()
+		tw.tween_interval(1.0)
+		tw.tween_property(mi.material_override, "albedo_color:a", 0.0, 0.4)
+	var spin := pivot.create_tween()
+	spin.tween_property(pivot, "rotation:y", TAU * 2.0, 1.4)
+
+
+static func _fire_ring(from: Node, pos: Vector3, c: Color, radius: float) -> void:
+	var h := EFX._holder(from, pos, 1.4)
+	var n := 8 if _mobile() else 14
+	for i in n:
+		var a := TAU * i / n
+		var at := pos + Vector3(cos(a), 0, sin(a)) * radius * 0.75
+		EFX._particles(h, at + Vector3(0, 0.15, 0), Color(c.lightened(0.3), 1.0), Color(c.darkened(0.4), 0.0), 8, 0.55, 0.5,
+			Vector2(1.5, 3.0), 15.0, Vector3(0, 1.0, 0), Vector3(0.12, 0.05, 0.12))
+	_shockwave(from, pos, c, radius)
+	EFX._flash_light(h, c, 4.0, radius + 4.0, 0.5, 1.0)
+
+
+static func _dust(from: Node, pos: Vector3, c: Color, radius: float) -> void:
+	EFX._particles(EFX._holder(from, pos, 1.4), pos + Vector3(0, 0.15, 0), Color(c, 0.75), Color(c, 0.0), 16, 0.9, 0.6,
+		Vector2(1.0, 2.6), 80.0, Vector3(0, -0.6, 0), Vector3(radius * 0.4, 0.05, radius * 0.4), false)
+
+
+static func _line_beam(from: Node, pos: Vector3, c: Color) -> void:
+	if not (from is Node3D):
+		return
+	var a: Vector3 = (from as Node3D).global_position + Vector3(0, 0.9, 0)
+	var b := pos + Vector3(0, 0.7, 0)
+	var dir := (b - a)
+	dir.y = 0
+	if dir.length() < 0.1:
+		return
+	b = a + dir.normalized() * (dir.length() + 3.0) + Vector3(0, -0.2, 0)
+	var h := EFX._holder(from, a, 0.6)
+	var mi := MeshInstance3D.new()
+	mi.mesh = EFX._bolt_mesh(Vector3.ZERO, b - a, 0.16, 0.0)
+	var m := EFX._mat(Color(c, 0.95))
+	mi.material_override = m
+	mi.cast_shadow = GeometryInstance3D.SHADOW_CASTING_SETTING_OFF
+	h.add_child(mi)
+	var tw := mi.create_tween()
+	tw.tween_property(m, "albedo_color:a", 0.0, 0.4)
+
+
+static func _arc(from: Node, pos: Vector3, c: Color, radius: float) -> void:
+	if from is Node3D:
+		var o: Vector3 = (from as Node3D).global_position
+		var h := EFX._holder(from, o, 0.8)
+		var fwd := (pos - o)
+		fwd.y = 0
+		fwd = fwd.normalized() if fwd.length() > 0.1 else Vector3.FORWARD
+		for i in 7:
+			var a := lerpf(-1.1, 1.1, i / 6.0)
+			var at := fwd.rotated(Vector3.UP, a) * radius * 0.85
+			_column(h, at, c, 0.12, 1.2, 0.35)
+	_dust(from, pos, Color(0.85, 0.75, 0.55), radius * 0.6)
+
+
+static func _drill(from: Node, pos: Vector3, c: Color) -> void:
+	var h := EFX._holder(from, pos, 1.0)
+	EFX._particles(h, pos + Vector3(0, 0.8, 0), Color(c, 1.0), Color(c, 0.0), 30, 0.6, 0.18, Vector2(0.5, 1.5), 30.0,
+		Vector3(0, -3.0, 0), Vector3(0.3, 0.6, 0.3), true, false, 14.0)
+	_column(h, Vector3.ZERO, c, 0.4, 3.0, 0.4)
+
+
+static func _sparkle(from: Node, pos: Vector3, c: Color) -> void:
+	EFX._particles(EFX._holder(from, pos, 1.0), pos + Vector3(0, 0.8, 0), Color(c, 1.0), Color(c, 0.0), 14, 0.6, 0.12,
+		Vector2(1.0, 2.5), 180.0, Vector3(0, -1.0, 0), Vector3(0.2, 0.3, 0.2))
+
+
+static func _falcon(from: Node, pos: Vector3, c: Color) -> void:
+	# a simple bird: two wing quads in a V that swoop down onto the target
+	var start := pos + Vector3(-4.0, 6.0, -3.0)
+	var h := EFX._holder(from, start, 0.9)
+	var bird := Node3D.new()
+	h.add_child(bird)
+	for side in [-1.0, 1.0]:
+		var w := MeshInstance3D.new()
+		var q := QuadMesh.new()
+		q.size = Vector2(0.9, 0.32)
+		w.mesh = q
+		var m := StandardMaterial3D.new()
+		m.albedo_color = c
+		m.cull_mode = BaseMaterial3D.CULL_DISABLED
+		m.shading_mode = BaseMaterial3D.SHADING_MODE_UNSHADED
+		w.material_override = m
+		w.position = Vector3(side * 0.42, 0, 0)
+		w.rotation = Vector3(PI * 0.5, 0, side * 0.35)
+		bird.add_child(w)
+	bird.look_at_from_position(start, pos, Vector3.UP)
+	var tw := bird.create_tween()
+	tw.tween_property(bird, "global_position", pos + Vector3(0, 0.8, 0), 0.35).set_ease(Tween.EASE_IN)
+	tw.tween_property(bird, "global_position", pos + Vector3(4.0, 5.0, 3.0), 0.4).set_ease(Tween.EASE_OUT)
+	from.get_tree().create_timer(0.35).timeout.connect(func() -> void:
+		if _ok(from):
+			_sparkle(from, pos, Color(1.0, 0.95, 0.8))
+			FX.flash(from, pos + Vector3(0, 0.8, 0), Color(1.0, 0.95, 0.8), 0.9))
+
+
+static func _trap(from: Node, pos: Vector3, c: Color) -> void:
+	var h := EFX._holder(from, pos, 1.2)
+	var dev := MeshInstance3D.new()
+	var cm := CylinderMesh.new()
+	cm.top_radius = 0.22
+	cm.bottom_radius = 0.28
+	cm.height = 0.12
+	dev.mesh = cm
+	var m := StandardMaterial3D.new()
+	m.albedo_color = Color(0.35, 0.3, 0.25)
+	m.emission_enabled = true
+	m.emission = c
+	m.emission_energy_multiplier = 1.5
+	dev.material_override = m
+	dev.position = Vector3(0, 0.06, 0)
+	h.add_child(dev)
+	var tw := dev.create_tween()
+	tw.tween_property(dev, "scale", Vector3(1.6, 0.3, 1.6), 0.5).set_delay(0.3)
+	FX.ring(from, pos, Color(c, 0.9), 1.1)
+	_sparkle(from, pos, c)
+
+
+static func _notes(from: Node, pos: Vector3, c: Color) -> void:
+	EFX._particles(EFX._holder(from, pos, 1.6), pos + Vector3(0, 1.0, 0), Color(c, 1.0), Color(c, 0.0), 10, 1.2, 0.22,
+		Vector2(0.6, 1.4), 40.0, Vector3(0, 0.6, 0), Vector3(0.4, 0.3, 0.4))
+
+
+static func _ice_block(from: Node, pos: Vector3) -> void:
+	# Frost Diver: ice runs along the ground to the target, which ends up in a block of ice
+	if from is Node3D:
+		var o: Vector3 = (from as Node3D).global_position
+		var steps := 5
+		for i in steps:
+			var at := o.lerp(pos, (i + 1.0) / steps)
+			from.get_tree().create_timer(0.04 * i).timeout.connect(func() -> void:
+				if _ok(from):
+					FX.spikes(from, at, Color(0.75, 0.92, 1.0, 0.9), 0.35, 3))
+	var h := EFX._holder(from, pos, 2.2)
+	var block := MeshInstance3D.new()
+	var bm := BoxMesh.new()
+	bm.size = Vector3(1.1, 1.6, 1.1)
+	block.mesh = bm
+	var m := StandardMaterial3D.new()
+	m.albedo_color = Color(0.7, 0.9, 1.0, 0.45)
+	m.transparency = BaseMaterial3D.TRANSPARENCY_ALPHA
+	m.emission_enabled = true
+	m.emission = Color(0.4, 0.7, 1.0)
+	m.emission_energy_multiplier = 0.6
+	m.rim_enabled = true
+	block.material_override = m
+	block.position = Vector3(0, 0.8, 0)
+	block.scale = Vector3(1, 0.05, 1)
+	h.add_child(block)
+	var tw := block.create_tween()
+	tw.tween_interval(0.2)
+	tw.tween_property(block, "scale", Vector3.ONE, 0.18).set_ease(Tween.EASE_OUT)
+	tw.tween_interval(1.4)
+	tw.tween_property(m, "albedo_color:a", 0.0, 0.4)
+
+
+static func _thunder_ball(from: Node, pos: Vector3, c: Color) -> void:
+	var h := EFX._holder(from, pos, 0.9)
+	for i in 4:
+		var a := randf() * TAU
+		var mi := MeshInstance3D.new()
+		mi.mesh = EFX._bolt_mesh(Vector3(0, 0.8, 0), Vector3(cos(a) * 1.2, 0.3 + randf() * 1.2, sin(a) * 1.2), 0.05, 0.4)
+		var m := EFX._mat(Color(0.9, 0.92, 1.0, 1.0))
+		mi.material_override = m
+		h.add_child(mi)
+		var tw := mi.create_tween()
+		tw.tween_property(m, "albedo_color:a", 0.0, 0.3).set_delay(0.05 * i)
+	FX.flash(from, pos + Vector3(0, 0.8, 0), c, 1.2)
+
+
+static func _coins(from: Node, pos: Vector3) -> void:
+	var h := EFX._holder(from, pos, 1.4)
+	var p := EFX._particles(h, pos + Vector3(0, 1.0, 0), Color(1.0, 0.85, 0.3, 1.0), Color(1.0, 0.75, 0.2, 0.0), 18, 1.0, 0.16,
+		Vector2(2.5, 4.5), 70.0, Vector3(0, -9.0, 0), Vector3(0.2, 0.2, 0.2), false)
+	p.direction = Vector3.UP
+
+
+static func _splash(from: Node, pos: Vector3, c: Color) -> void:
+	var h := EFX._holder(from, pos, 1.2)
+	EFX._particles(h, pos + Vector3(0, 0.8, 0), Color(c, 1.0), Color(c.darkened(0.3), 0.0), 18, 0.7, 0.2,
+		Vector2(1.5, 3.5), 75.0, Vector3(0, -7.0, 0), Vector3(0.2, 0.2, 0.2), false)
+	var d := _disc(h, 0.9, Color(c, 0.55))
+	_fade(h, d.material_override, 0.5, 0.5)
+
+
+static func _smoke(from: Node, pos: Vector3, c: Color) -> void:
+	EFX._particles(EFX._holder(from, pos, 1.6), pos + Vector3(0, 0.5, 0), Color(c, 0.75), Color(c, 0.0), 18, 1.1, 1.0,
+		Vector2(0.4, 1.2), 90.0, Vector3(0, 0.4, 0), Vector3(0.4, 0.3, 0.4), false)
+
+
+## Rising aura around the caster for a buff.
+static func aura(from: Node, id: String, pos: Vector3) -> void:
+	if not _ok(from) or not AURAS.has(id):
+		return
+	var c: Color = AURAS[id]
+	var h := EFX._holder(from, pos, 1.5)
+	EFX._particles(h, pos + Vector3(0, 0.1, 0), Color(c, 0.9), Color(c, 0.0), 22 if not _mobile() else 12, 0.9, 0.35,
+		Vector2(1.0, 2.6), 10.0, Vector3(0, 1.0, 0), Vector3(0.45, 0.05, 0.45), true)
+	var d := _disc(h, 1.1, Color(c, 0.45))
+	_fade(h, d.material_override, 0.6, 0.6)
+
+
+## Ragnarok drops Fire/Cold/Lightning Bolt from the sky onto the target: start point of each bolt.
+static func sky_start(id: String, target: Vector3) -> Vector3:
+	if id in ["fire_bolt", "cold_bolt", "lightning_bolt", "napalm_vulcan", "holy_light"]:
+		return target + Vector3(randf_range(-0.8, 0.8), 7.5, randf_range(-0.8, 0.8))
+	return Vector3.INF
+
+
+## Lightning Bolt arrives as real lightning from the sky instead of a projectile.
+static func sky_lightning(from: Node, pos: Vector3) -> void:
+	var h := EFX._holder(from, pos, 0.5)
+	var top := Vector3(randf_range(-0.6, 0.6), 9.0, randf_range(-0.6, 0.6))
+	for layer in 2:
+		var mi := MeshInstance3D.new()
+		mi.mesh = EFX._bolt_mesh(top, Vector3(0, 0.3, 0), 0.05 if layer == 0 else 0.18, 0.7)
+		var m := EFX._mat(Color(1, 1, 0.95, 1.0) if layer == 0 else Color(1.0, 0.9, 0.35, 0.5))
+		mi.material_override = m
+		h.add_child(mi)
+		var tw := mi.create_tween()
+		tw.tween_property(m, "albedo_color:a", 0.0, 0.3)
+	EFX._flash_light(h, Color(1.0, 0.95, 0.6), 5.0, 6.0, 0.25, 3.0)
